@@ -1,4 +1,4 @@
-extends CharacterBody2D
+extends Area2D
 
 enum ShipSize { LARGE, MEDIUM, SMALL }
 
@@ -50,5 +50,13 @@ func unload():
 	print('unloading')
 
 
-func _on_area_2d_body_entered(body):
+func _on_body_entered(body):
 	print('hit')
+
+func _on_area_entered(area):
+	print('Entered the dock')
+	
+	if nodeColor == area.nodeColor:
+		unload()
+	else:
+		print('Wrong color')

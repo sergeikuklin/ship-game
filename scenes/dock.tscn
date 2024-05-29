@@ -26,6 +26,3 @@ script = ExtResource("1_htcxl")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_5l2y3")
 script = SubResource("GDScript_37db8")
-
-[connection signal="area_entered" from="." to="." method="_on_area_entered"]
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
