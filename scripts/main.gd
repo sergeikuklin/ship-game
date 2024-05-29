@@ -8,12 +8,8 @@ var selected_ship = null
 var drawing_path = false
 var path_points = []
 var tolerance = 5.0
-
-#func _ready():
-	# Spawn an initial ship for testing
-	
-	#spawn_ship(Vector2(10, 10))
-	#spawn_ship(Vector2(100, 100))
+var alpha_value = 1.0
+var tween
 
 func _input(event):
 	if event is InputEventMouseButton:
@@ -30,6 +26,12 @@ func _input(event):
 				if selected_ship:
 					selected_ship.set_path(simplify_path(path_points, tolerance))
 					selected_ship = null
+					if tween:
+						tween.kill()
+					alpha_value = 1.0
+					tween = get_tree().create_tween()
+					tween.tween_property(self, "alpha_value", 0, 0.3)
+					
 
 	elif event is InputEventMouseMotion and drawing_path:
 		if selected_ship:
@@ -41,21 +43,24 @@ func get_ship_at_position(position):
 			return ship
 	return null
 
-func spawn_ship(position):
-	var ship = ship_scene.instantiate()
-	ship.position = position
-	add_child(ship)
-	ship.add_to_group("ships")
-
 func _process(_delta):
 	queue_redraw()
 
 func _draw():
 	if drawing_path and selected_ship:
 		for i in range(len(path_points) - 1):
-			draw_line(path_points[i], path_points[i + 1], Color(1, 0, 0), 2)
+			draw_line(path_points[i], path_points[i + 1], Color(255, 255, 255, 1), 6)
+	else:
+		for i in range(len(path_points) - 1):
+			draw_line(path_points[i], path_points[i + 1], Color(255, 255, 255, alpha_value), 6)
 			
 			
+func spawn_ship(position):
+	var ship = ship_scene.instantiate()
+	ship.position = position
+	add_child(ship)
+	ship.add_to_group("ships")
+	
 func simplify_path(points, tolerance):
 	if points.size() < 3:
 		return points

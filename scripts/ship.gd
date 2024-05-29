@@ -31,7 +31,6 @@ func _process(delta):
 	elif path_index >= path.size():
 		path.clear()
 		path_index = 0
-		#set_path(generate_circle_path(circle_center, circle_radius, circle_points_count))
 
 
 func set_path(new_path):

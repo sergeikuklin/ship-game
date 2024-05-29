@@ -593,3 +593,5 @@ position = Vector2(-174, -225)
 
 [node name="Ship" parent="." groups=["ships"] instance=ExtResource("4_n738c")]
 position = Vector2(216, 171)
+
+[connection signal="draw" from="Ship" to="." method="_on_ship_draw"]
