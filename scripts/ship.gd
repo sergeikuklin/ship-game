@@ -1,6 +1,6 @@
-extends Area2D
+extends CharacterBody2D
 
-var speed = 200
+var speed = 300
 var rotation_speed = 15
 var path = []
 var path_index = 0
@@ -40,6 +40,10 @@ func _process(delta):
 func set_path(new_path):
 	path = new_path
 	path_index = 0
+	
+	
+func unload():
+	print('unloading')
 
 func generate_circle_path(center, radius, points_count):
 	var points = []

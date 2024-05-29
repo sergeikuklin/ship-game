@@ -9,11 +9,11 @@ var drawing_path = false
 var path_points = []
 var tolerance = 5.0
 
-func _ready():
+#func _ready():
 	# Spawn an initial ship for testing
 	
-	spawn_ship(Vector2(10, 10))
-	spawn_ship(Vector2(100, 100))
+	#spawn_ship(Vector2(10, 10))
+	#spawn_ship(Vector2(100, 100))
 
 func _input(event):
 	if event is InputEventMouseButton:
