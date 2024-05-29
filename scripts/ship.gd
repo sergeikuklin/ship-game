@@ -4,14 +4,11 @@ var speed = 300
 var rotation_speed = 15
 var path = []
 var path_index = 0
-# Default path radius and center
-var circle_radius = 200
-var circle_center = Vector2(10, 10)
-var circle_points_count = 36
+
 
 #func _ready():
 	#if path.size() == 0:
-		#path = generate_circle_path(circle_center, circle_radius, circle_points_count)
+		#path = default_path
 
 func _process(delta):
 	if path.size() > 0 and path_index < path.size():
@@ -44,12 +41,3 @@ func set_path(new_path):
 	
 func unload():
 	print('unloading')
-
-func generate_circle_path(center, radius, points_count):
-	var points = []
-	for i in range(points_count):
-		var angle = 2 * PI * i / points_count
-		var x = center.x + radius * cos(angle)
-		var y = center.y + radius * sin(angle)
-		points.append(Vector2(x, y))
-	return points
