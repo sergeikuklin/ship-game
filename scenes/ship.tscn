@@ -1,0 +1,84 @@
+[gd_scene load_steps=13 format=3 uid="uid://bctuuenxymo2y"]
+
+[ext_resource type="Script" path="res://scripts/ship.gd" id="1_3kgkc"]
+[ext_resource type="Texture2D" uid="uid://h45ojcvm7usl" path="res://assets/Boat Idle/Boat free Redish Brown.png" id="2_h4dux"]
+[ext_resource type="Texture2D" uid="uid://bxjngxp1pxhb2" path="res://assets/Sprite Boat moving fast/Boat Free Fast Moving Redish.png" id="3_3t8ru"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ba068"]
+atlas = ExtResource("2_h4dux")
+region = Rect2(0, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gcj83"]
+atlas = ExtResource("2_h4dux")
+region = Rect2(64, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mgbj7"]
+atlas = ExtResource("2_h4dux")
+region = Rect2(0, 64, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g582e"]
+atlas = ExtResource("3_3t8ru")
+region = Rect2(0, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dllmo"]
+atlas = ExtResource("3_3t8ru")
+region = Rect2(64, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yy2lt"]
+atlas = ExtResource("3_3t8ru")
+region = Rect2(128, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4fo8g"]
+atlas = ExtResource("3_3t8ru")
+region = Rect2(0, 64, 32, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2i7x1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ba068")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gcj83")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mgbj7")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g582e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dllmo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yy2lt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4fo8g")
+}],
+"loop": true,
+"name": &"move",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_h4aad"]
+radius = 6.0
+height = 28.0
+
+[node name="Ship" type="Area2D"]
+script = ExtResource("1_3kgkc")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_2i7x1")
+animation = &"move"
+autoplay = "move"
+frame_progress = 0.569796
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -16)
+shape = SubResource("CapsuleShape2D_h4aad")
