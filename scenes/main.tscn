@@ -591,5 +591,5 @@ position = Vector2(2.08165e-12, 2.08165e-12)
 [node name="Dock" parent="." instance=ExtResource("2_itocx")]
 position = Vector2(-174, -225)
 
-[node name="Ship2" parent="." groups=["ships"] instance=ExtResource("4_n738c")]
+[node name="Ship" parent="." groups=["ships"] instance=ExtResource("4_n738c")]
 position = Vector2(216, 171)
