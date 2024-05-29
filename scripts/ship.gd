@@ -1,14 +1,23 @@
 extends CharacterBody2D
 
+enum ShipSize { LARGE, MEDIUM, SMALL }
+
+@export var size = ShipSize.MEDIUM
+@export var nodeColor:Constants.NodeColor = Constants.NodeColor.RED
+
 var speed = 300
 var rotation_speed = 15
 var path = []
 var path_index = 0
 
-
-#func _ready():
-	#if path.size() == 0:
+func _ready():
+		#if path.size() == 0:
 		#path = default_path
+	match size:
+		ShipSize.LARGE:
+			speed = 100
+		
+
 
 func _process(delta):
 	if path.size() > 0 and path_index < path.size():

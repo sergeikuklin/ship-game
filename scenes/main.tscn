@@ -596,12 +596,19 @@ layer_0/tile_data = PackedInt32Array(-65538, 983040, 0, -2, 983040, 1, 65534, 98
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(2.08165e-12, 2.08165e-12)
 
-[node name="Dock" parent="." instance=ExtResource("2_itocx")]
+[node name="RedDock" parent="." instance=ExtResource("2_itocx")]
 position = Vector2(-174, -225)
 collision_mask = 2
 
-[node name="Ship" parent="." groups=["ships"] instance=ExtResource("4_n738c")]
+[node name="RedShip" parent="." groups=["ships"] instance=ExtResource("4_n738c")]
 position = Vector2(216, 171)
 collision_layer = 2
 
-[connection signal="draw" from="Ship" to="." method="_on_ship_draw"]
+[node name="BlueShip" parent="." groups=["ships"] instance=ExtResource("4_n738c")]
+position = Vector2(-177, 179)
+collision_layer = 2
+size = 0
+nodeColor = 1
+
+[connection signal="draw" from="RedShip" to="." method="_on_ship_draw"]
+[connection signal="draw" from="BlueShip" to="." method="_on_ship_draw"]

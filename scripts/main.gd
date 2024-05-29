@@ -1,8 +1,6 @@
 extends Node2D
 
-# Preload the Ship scene as a PackedScene
-@onready var ship_scene = preload("res://scenes/Ship.tscn")
-@onready var camera = get_node("Camera2D")
+@onready var camera = $Camera2D
 
 var selected_ship = null
 var drawing_path = false
@@ -55,11 +53,6 @@ func _draw():
 			draw_line(path_points[i], path_points[i + 1], Color(255, 255, 255, alpha_value), 6)
 			
 			
-func spawn_ship(position):
-	var ship = ship_scene.instantiate()
-	ship.position = position
-	add_child(ship)
-	ship.add_to_group("ships")
 	
 func simplify_path(points, tolerance):
 	if points.size() < 3:
