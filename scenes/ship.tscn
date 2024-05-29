@@ -71,17 +71,18 @@ radius = 16.0
 height = 76.0
 
 [node name="Ship" type="CharacterBody2D"]
+z_index = 1
 collision_layer = 2
 motion_mode = 1
 script = ExtResource("1_p2ajv")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(8.07794e-28, 76)
+position = Vector2(5.73972e-42, 41)
 scale = Vector2(2.5, 2.5)
 sprite_frames = SubResource("SpriteFrames_qbnv3")
 animation = &"move"
 autoplay = "move"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 34)
+position = Vector2(0, 4)
 shape = SubResource("CapsuleShape2D_yyhrj")

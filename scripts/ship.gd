@@ -18,7 +18,6 @@ func _ready():
 			speed = 100
 		
 
-
 func _process(delta):
 	if path.size() > 0 and path_index < path.size():
 		var target_position = path[path_index]
@@ -35,7 +34,7 @@ func _process(delta):
 			position += direction * speed * delta
 
 		# Check if ship has reached the target position
-		if position.distance_to(target_position) <= 10:
+		if position.distance_to(target_position) <= 40:
 			path_index += 1
 	elif path_index >= path.size():
 		path.clear()
@@ -49,3 +48,7 @@ func set_path(new_path):
 	
 func unload():
 	print('unloading')
+
+
+func _on_area_2d_body_entered(body):
+	print('hit')
