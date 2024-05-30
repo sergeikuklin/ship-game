@@ -21,7 +21,6 @@ var rotation_speed = 15
 var path = []
 var path_index = 0
 var is_entered_dock = false
-var containers = 3
 
 func _ready():
 	if spawn_delay == 0:
@@ -72,7 +71,7 @@ func _process(delta):
 		var forward_direction = Vector2(cos(rotation - PI / 2), sin(rotation - PI / 2))
 		position += forward_direction * speed * delta
 
-
+		
 func follow_path(path, delta):
 	var target_position = path[path_index]
 	var direction = (target_position - position).normalized()
@@ -99,7 +98,9 @@ func set_path(new_path):
 
 
 func repositionInDock(dockPosition):
-	set_path([dockPosition])
+	position = dockPosition
+	rotation = 0
+	
 
 func unloadContainer():
 	timer.one_shot = true
@@ -159,9 +160,7 @@ func _on_viewport_exited(_viewport):
 
 
 func _on_timer_timeout():
-	print('TIMER OUT' + str(containers))
-	if containers > 0:
-		containers -= 1
+	if remove_container() == 'success':
 		game_manager.add_points(20)
 		unloadContainer()
 	else:

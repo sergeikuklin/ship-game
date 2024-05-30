@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://scripts/ship.gd" id="1_p2ajv"]
 [ext_resource type="Texture2D" uid="uid://bxjngxp1pxhb2" path="res://assets/Sprite Boat moving fast/Boat Free Fast Moving Redish.png" id="2_6ee1a"]
 [ext_resource type="Shader" path="res://scenes/color.gdshader" id="2_hf2nu"]
-[ext_resource type="PackedScene" uid="uid://lmyk51b85hss" path="res://scenes/container.tscn" id="2_lvar2"]
+[ext_resource type="PackedScene" path="res://scenes/container.tscn" id="2_lvar2"]
 [ext_resource type="Texture2D" uid="uid://6qinxr2bktgy" path="res://assets/large ship.png" id="3_nvi2u"]
 [ext_resource type="Texture2D" uid="uid://cvakgrdgemg3s" path="res://assets/medium ship.png" id="5_2j1kh"]
 [ext_resource type="Texture2D" uid="uid://fxgk10iq4na0" path="res://assets/Terrain/Terrain (16x16).png" id="5_um5pv"]
