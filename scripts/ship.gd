@@ -5,7 +5,8 @@ enum ShipSize { LARGE, MEDIUM, SMALL }
 @export var size = ShipSize.MEDIUM
 @export var node_color:Constants.NodeColor = Constants.NodeColor.RED
 
-@onready var color_tile = $ColorTile
+@onready var medium_color_tile = $mediumColorTile
+@onready var large_color_tile = $LargeColorTile
 @onready var game_manager = %GameManager
 
 var speed = 200
@@ -16,12 +17,18 @@ var is_entered_dock = false
 
 func _ready():
 	print(node_color)
-	color_tile.material.set_shader_parameter('nodeColor', node_color)
 			
 	match size:
 		ShipSize.LARGE:
+			large_color_tile.material.set_shader_parameter('nodeColor', node_color)
 			speed = 100
-		
+			$AnimatedSprite2D.animation = 'move_large'
+			$mediumColorTile.hide()
+		ShipSize.MEDIUM:
+			medium_color_tile.material.set_shader_parameter('nodeColor', node_color)
+			speed = 200
+			$AnimatedSprite2D.animation = 'move_medium'
+			$LargeColorTile.hide()
 
 func _process(delta):
 	if path.size() > 0 and path_index < path.size():

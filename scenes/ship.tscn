@@ -1,9 +1,11 @@
-[gd_scene load_steps=18 format=3 uid="uid://lfqjsqp1btri"]
+[gd_scene load_steps=28 format=3 uid="uid://lfqjsqp1btri"]
 
 [ext_resource type="Texture2D" uid="uid://h45ojcvm7usl" path="res://assets/Boat Idle/Boat free Redish Brown.png" id="1_218gq"]
 [ext_resource type="Script" path="res://scripts/ship.gd" id="1_p2ajv"]
 [ext_resource type="Texture2D" uid="uid://bxjngxp1pxhb2" path="res://assets/Sprite Boat moving fast/Boat Free Fast Moving Redish.png" id="2_6ee1a"]
 [ext_resource type="Shader" path="res://scenes/color.gdshader" id="2_hf2nu"]
+[ext_resource type="Texture2D" uid="uid://6qinxr2bktgy" path="res://assets/large ship.png" id="3_nvi2u"]
+[ext_resource type="Texture2D" uid="uid://cvakgrdgemg3s" path="res://assets/medium ship.png" id="5_2j1kh"]
 [ext_resource type="Texture2D" uid="uid://fxgk10iq4na0" path="res://assets/Terrain/Terrain (16x16).png" id="5_um5pv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ba068"]
@@ -32,6 +34,38 @@ region = Rect2(128, 0, 32, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4fo8g"]
 atlas = ExtResource("2_6ee1a")
+region = Rect2(0, 64, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nhqka"]
+atlas = ExtResource("3_nvi2u")
+region = Rect2(0, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cxmoc"]
+atlas = ExtResource("3_nvi2u")
+region = Rect2(64, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wtc2h"]
+atlas = ExtResource("3_nvi2u")
+region = Rect2(128, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vl4nb"]
+atlas = ExtResource("3_nvi2u")
+region = Rect2(0, 64, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7q8yq"]
+atlas = ExtResource("5_2j1kh")
+region = Rect2(0, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qencx"]
+atlas = ExtResource("5_2j1kh")
+region = Rect2(64, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4w01e"]
+atlas = ExtResource("5_2j1kh")
+region = Rect2(128, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7rxu7"]
+atlas = ExtResource("5_2j1kh")
 region = Rect2(0, 64, 32, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qbnv3"]
@@ -65,6 +99,40 @@ animations = [{
 }],
 "loop": true,
 "name": &"move",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nhqka")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cxmoc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wtc2h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vl4nb")
+}],
+"loop": true,
+"name": &"move_large",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7q8yq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qencx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4w01e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7rxu7")
+}],
+"loop": true,
+"name": &"move_medium",
 "speed": 5.0
 }]
 
@@ -225,6 +293,7 @@ texture = ExtResource("5_um5pv")
 20:10/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_jkmoh"]
+tile_size = Vector2i(1, 1)
 sources/0 = SubResource("TileSetAtlasSource_48fme")
 
 [node name="Ship" type="Area2D" groups=["ships"]]
@@ -235,18 +304,26 @@ script = ExtResource("1_p2ajv")
 position = Vector2(5.73972e-42, 41)
 scale = Vector2(2.5, 2.5)
 sprite_frames = SubResource("SpriteFrames_qbnv3")
-animation = &"move"
-autoplay = "move"
+animation = &"move_large"
+autoplay = "move_medium"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 4)
 shape = SubResource("CapsuleShape2D_yyhrj")
 
-[node name="ColorTile" type="TileMap" parent="."]
+[node name="LargeColorTile" type="TileMap" parent="."]
 material = SubResource("ShaderMaterial_0ns2f")
 tile_set = SubResource("TileSet_jkmoh")
+rendering_quadrant_size = 8
 format = 2
-layer_0/tile_data = PackedInt32Array(131071, 1114112, 9, 65536, 1114112, 9)
+layer_0/tile_data = PackedInt32Array(-196616, 786432, 5, -262136, 786432, 5, 917496, 786432, 5, 851976, 786432, 5, 2031608, 786432, 5, 1966088, 786432, 5)
+
+[node name="mediumColorTile" type="TileMap" parent="."]
+material = SubResource("ShaderMaterial_0ns2f")
+tile_set = SubResource("TileSet_jkmoh")
+rendering_quadrant_size = 8
+format = 2
+layer_0/tile_data = PackedInt32Array(917496, 786432, 5, 851976, 786432, 5, -196616, 786432, 5, -262136, 786432, 5)
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_area_exited"]
