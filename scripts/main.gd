@@ -6,6 +6,7 @@ var path_points = []
 var tolerance = 5.0
 var alpha_value = 1.0
 var tween
+
 func _input(event):
 	var mouse_position = event.position
 	
