@@ -1027,11 +1027,11 @@ layer_2/tile_data = PackedInt32Array(-327643, 131072, 0, -262107, 131072, 2, -26
 [node name="Ships" type="Node" parent="."]
 
 [node name="RedShip" parent="Ships" instance=ExtResource("4_n738c")]
-position = Vector2(241, 84)
+position = Vector2(1609, 829)
 rotation = -6.6497
 
 [node name="BlueShip" parent="Ships" instance=ExtResource("4_n738c")]
-position = Vector2(-377, 14)
+position = Vector2(111, 933)
 rotation = 0.656244
 size = 0
 node_color = 1
