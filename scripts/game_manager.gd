@@ -37,3 +37,6 @@ func _on_request_completed(_result, response_code, _headers, body):
 func handle_scores(scores):
 	for score in scores:
 		print("Score by %s: %d" % [score.name, score.score])
+
+func handle_game_over():
+	print('Game over')

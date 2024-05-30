@@ -6,6 +6,8 @@ var path_points = []
 var tolerance = 5.0
 var alpha_value = 1.0
 var tween
+var is_game_over = false
+
 func _input(event):
 	var mouse_position = event.position
 	
@@ -37,7 +39,6 @@ func _input(event):
 func _ready():
 	%GameManager.get_scores()
 	
-	
 func get_ship_at_position(mouse_position):
 	for ship in get_tree().get_nodes_in_group("ships"):
 		if ship.get_global_position().distance_to(mouse_position) < ship.get_node("CollisionShape2D").shape.get_radius()*7:
@@ -45,6 +46,9 @@ func get_ship_at_position(mouse_position):
 	return null
 
 func _process(_delta):
+	if is_game_over:
+		return;
+	handle_levels()
 	queue_redraw()
 
 func _draw():
@@ -100,3 +104,22 @@ func point_line_distance(point, line_start, line_end):
 func _on_area_exited(area):
 	if area.is_in_group('ships'):
 		area.queue_free()
+
+func handle_levels():		
+	var level1_ships_count = $Level1/Ships.get_child_count()
+	if level1_ships_count == 0:
+		if %GameManager.score >=100:
+			$Level1.set_process_mode(PROCESS_MODE_DISABLED)
+			$Level1.hide()
+			$Level1/TileMap.set_layer_enabled(0, false)
+			
+			$Level2.set_process_mode(PROCESS_MODE_INHERIT)
+			$Level2.show()
+			$Level2/TileMap.set_layer_enabled(0, true)
+		else:
+			is_game_over = true
+			%GameManager.handle_game_over()
+	var level2_ships_count = $Level2/Ships.get_child_count()
+	if level2_ships_count == 0:
+		is_game_over = true		
+		%GameManager.handle_game_over()
