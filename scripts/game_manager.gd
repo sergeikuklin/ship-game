@@ -25,18 +25,13 @@ func get_scores():
 
 # This method is called when the HTTPRequest node completes the request.
 func _on_request_completed(result, response_code, headers, body):
-	var body_string = body.get_string_from_utf8()
-	print("Raw Response: ", body_string)
-	if response_code == 200 and body_string.strip() != "":
-		var json = JSON.new()  # Create a new JSON instance
-		var data = json.parse(body_string)
-		if data.error == OK:
-			print("Received data: ", data.result)
-			handle_scores(data.result)
-		else:
-			print("JSON parsing error: ", data.error)
+	if response_code == 200:
+		# Assuming the response is JSON and contains an array of scores
+		var data = JSON.parse_string(body.get_string_from_utf8())
+		print("Received data: ", data)
+		handle_scores(data)
 	else:
-		print("Failed to get scores or empty response. HTTP Response Code: ", response_code)
+		print("Failed to get scores. HTTP Response Code: ", response_code)
 
 # Handle the scores data as needed.
 func handle_scores(scores):
