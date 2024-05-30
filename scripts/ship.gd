@@ -15,12 +15,14 @@ var ContainerScene = ResourceLoader.load("res://scenes/container.tscn")
 
 
 
+
 var spawn = false
 var speed = 200
 var rotation_speed = 15
 var path = []
 var path_index = 0
 var is_entered_dock = false
+var is_dead = false
 
 func _ready():
 	if spawn_delay == 0:
@@ -60,18 +62,22 @@ func remove_container():
 func _process(delta):
 	if !spawn:
 		return
+			
 	if path.size() > 0 and path_index < path.size():
 		follow_path(path, delta)
 
+	# JUST STOP
 	elif path_index >= path.size():
-		path.clear()
-		path_index = 0
+		clearPath()
 
 	if path.size() == 0 && !is_entered_dock:
 		var forward_direction = Vector2(cos(rotation - PI / 2), sin(rotation - PI / 2))
 		position += forward_direction * speed * delta
 
-		
+func clearPath():
+	path.clear()
+	path_index = 0
+
 func follow_path(path, delta):
 	var target_position = path[path_index]
 	var direction = (target_position - position).normalized()
@@ -96,11 +102,13 @@ func set_path(new_path):
 	path = new_path
 	path_index = find_closest_point_index(new_path)
 
+func unloadingDone():
+	rotate(PI)
 
 func repositionInDock(dockPosition):
+	clearPath()
 	position = dockPosition
 	rotation = 0
-	
 
 func unloadContainer():
 	timer.one_shot = true
@@ -110,8 +118,9 @@ func destroy():
 	# Apply penalty to the score
 	print('destroyed')
 	game_manager.remove_points(20)
-
-	queue_free()
+	$AnimatedSprite2D.animation = 'explode'
+	$ContainersGoHere.hide()
+	is_dead = true
 
 func find_closest_point_index(points):
 	if points.size() == 0:
@@ -137,6 +146,7 @@ func _on_area_entered(area):
 		print('Entered the dock')
 
 		is_entered_dock = true
+		repositionInDock(area.position)
 
 		if node_color == area.node_color:
 			unloadContainer()
@@ -164,4 +174,10 @@ func _on_timer_timeout():
 		game_manager.add_points(20)
 		unloadContainer()
 	else:
-		print("GET OUT")
+		unloadingDone()
+
+
+func _on_animated_sprite_2d_animation_finished():
+	print("IS DEAD? " + str(is_dead))
+	if is_dead:
+		queue_free()
