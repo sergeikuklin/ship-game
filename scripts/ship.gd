@@ -3,9 +3,10 @@ extends Area2D
 enum ShipSize { LARGE, MEDIUM, SMALL }
 
 @export var size = ShipSize.MEDIUM
-@export var nodeColor:Constants.NodeColor = Constants.NodeColor.RED
+@export var node_color:Constants.NodeColor = Constants.NodeColor.RED
 
-@onready var colorTile = $ColorTile
+@onready var color_tile = $ColorTile
+@onready var game_manager = %GameManager
 
 var speed = 200
 var rotation_speed = 15
@@ -13,7 +14,7 @@ var path = []
 var path_index = 0
 var is_entered_dock = false
 func _ready():
-	colorTile.material.set_shader_parameter('nodeColor', nodeColor)
+	color_tile.material.set_shader_parameter('nodeColor', node_color)
 			
 	match size:
 		ShipSize.LARGE:
@@ -63,10 +64,14 @@ func unload():
 	# Add points to the score after unloading
 	# Remove ship or make player to release it from dock
 	print('unloading')
+	
+	game_manager.add_points(20)
 
 func destroy():
 	# Apply penalty to the score
 	print('destroyed')
+	game_manager.remove_points(20)
+	
 	queue_free()
 
 func find_closest_point_index(points):
@@ -94,7 +99,7 @@ func _on_area_entered(area):
 	
 		is_entered_dock = true
 		
-		if nodeColor == area.nodeColor:
+		if node_color == area.node_color:
 			unload()
 		else:
 			print('Wrong color')
