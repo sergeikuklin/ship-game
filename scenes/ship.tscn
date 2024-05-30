@@ -334,6 +334,7 @@ layer_0/tile_data = PackedInt32Array(917496, 786432, 5, 851976, 786432, 5, -1966
 
 [node name="SpawnTimer" type="Timer" parent="."]
 one_shot = true
+
 [node name="ContainersGoHere" type="Node2D" parent="."]
 
 [node name="Timer" type="Timer" parent="."]

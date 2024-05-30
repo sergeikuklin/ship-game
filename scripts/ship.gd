@@ -63,15 +63,18 @@ func _process(delta):
 	if path.size() > 0 and path_index < path.size():
 		follow_path(path, delta)
 
+	# JUST STOP
 	elif path_index >= path.size():
-		path.clear()
-		path_index = 0
+		clearPath()
 
 	if path.size() == 0 && !is_entered_dock:
 		var forward_direction = Vector2(cos(rotation - PI / 2), sin(rotation - PI / 2))
 		position += forward_direction * speed * delta
 
-		
+func clearPath():
+	path.clear()
+	path_index = 0
+
 func follow_path(path, delta):
 	var target_position = path[path_index]
 	var direction = (target_position - position).normalized()
@@ -96,11 +99,13 @@ func set_path(new_path):
 	path = new_path
 	path_index = find_closest_point_index(new_path)
 
+func unloadingDone():
+	rotate(PI)
 
 func repositionInDock(dockPosition):
+	clearPath()
 	position = dockPosition
 	rotation = 0
-	
 
 func unloadContainer():
 	timer.one_shot = true
@@ -137,6 +142,7 @@ func _on_area_entered(area):
 		print('Entered the dock')
 
 		is_entered_dock = true
+		repositionInDock(area.position)
 
 		if node_color == area.node_color:
 			unloadContainer()
@@ -164,4 +170,4 @@ func _on_timer_timeout():
 		game_manager.add_points(20)
 		unloadContainer()
 	else:
-		print("GET OUT")
+		unloadingDone()

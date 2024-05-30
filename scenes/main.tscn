@@ -1036,6 +1036,7 @@ position = Vector2(334, 1299)
 rotation = 0.0506145
 node_color = 1
 spawn_delay = 4.0
+
 [node name="Timer" type="Timer" parent="Ships"]
 
 [node name="Docks" type="Node" parent="."]
