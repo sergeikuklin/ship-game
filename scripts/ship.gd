@@ -48,9 +48,11 @@ func follow_path(path, delta):
 		path_index += 1
 
 func set_path(new_path):
+	var closest_index = find_closest_point_index(new_path)
+
 	path = new_path
-	path_index = 0
-	
+	path_index = find_closest_point_index(new_path) 
+
 	
 func unload():
 	# Use timer to set up unloading time
@@ -63,6 +65,20 @@ func destroy():
 	print('destroyed')
 	queue_free()
 
+func find_closest_point_index(points):
+	if points.size() == 0:
+		return 0
+
+	var closest_index = 0
+	var min_distance = global_position.distance_to(points[0])
+
+	for i in range(1, points.size()):
+		var distance = global_position.distance_to(points[i])
+		if distance < min_distance:
+			min_distance = distance
+			closest_index = i
+
+	return closest_index
 
 # When hits land
 func _on_body_entered(body):
