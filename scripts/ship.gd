@@ -50,11 +50,10 @@ func unload():
 	# Use timer to set up unloading time
 	# Add points to the score after unloading
 	# Remove ship or make player to release it from dock
-	
-	
 	print('unloading')
 
 func destroy():
+	# Apply penalty to the score
 	print('destroyed')
 
 
