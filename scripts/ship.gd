@@ -165,10 +165,6 @@ func _on_area_exited(area):
 func _on_spawn_timer_timeout():
 	spawn = true
 
-func _on_viewport_exited(_viewport):
-	print("out of screen")
-
-
 func _on_timer_timeout():
 	if remove_container() == 'success':
 		game_manager.add_points(20)
