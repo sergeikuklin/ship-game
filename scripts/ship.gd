@@ -1,20 +1,56 @@
 extends Area2D
 
 enum ShipSize { LARGE, MEDIUM, SMALL }
+var ContainerScene = ResourceLoader.load("res://scenes/container.tscn")
 
 @export var size = ShipSize.MEDIUM
-@export var nodeColor:Constants.NodeColor = Constants.NodeColor.RED
+@export var node_color:Constants.NodeColor = Constants.NodeColor.RED
+
+@onready var medium_color_tile = $mediumColorTile
+@onready var large_color_tile = $LargeColorTile
+@onready var game_manager = %GameManager
+
 
 var speed = 200
 var rotation_speed = 15
 var path = []
 var path_index = 0
+var is_entered_dock = false
 
-func _ready():
+func _ready():			
+	
 	match size:
 		ShipSize.LARGE:
+			large_color_tile.material.set_shader_parameter('nodeColor', node_color)
 			speed = 100
-		
+			$AnimatedSprite2D.animation = 'move_large'
+			#$mediumColorTile.hide()
+			var instance = ContainerScene.instantiate()
+			instance.node_color=node_color
+			instance.position = Vector2(0, -4)
+			$ContainersGoHere.add_child(instance)
+			var instance2 = ContainerScene.instantiate()
+			instance2.node_color=node_color
+			instance2.position = Vector2(0, 14)
+			$ContainersGoHere.add_child(instance2)
+			var instance3 = ContainerScene.instantiate()
+			instance3.node_color=node_color
+			instance3.position = Vector2(0, 32)
+			$ContainersGoHere.add_child(instance3)
+		ShipSize.MEDIUM:
+			medium_color_tile.material.set_shader_parameter('nodeColor', node_color)
+			speed = 200
+			$AnimatedSprite2D.animation = 'move_medium'
+			#$LargeColorTile.hide()
+			var instance = ContainerScene.instantiate()
+			instance.node_color=node_color
+			instance.position = Vector2(0, -4)
+			$ContainersGoHere.add_child(instance)
+			var instance2 = ContainerScene.instantiate()
+			instance2.position = Vector2(0, 14)
+			instance2.node_color=node_color
+			$ContainersGoHere.add_child(instance2)
+
 
 func _process(delta):
 	if path.size() > 0 and path_index < path.size():
@@ -24,7 +60,7 @@ func _process(delta):
 		path.clear()
 		path_index = 0
 		
-	if path.size() == 0:
+	if path.size() == 0 && !is_entered_dock:
 		var forward_direction = Vector2(cos(rotation - PI / 2), sin(rotation - PI / 2))
 		position += forward_direction * speed * delta
 
@@ -48,21 +84,41 @@ func follow_path(path, delta):
 		path_index += 1
 
 func set_path(new_path):
+	var closest_index = find_closest_point_index(new_path)
+
 	path = new_path
-	path_index = 0
-	
+	path_index = find_closest_point_index(new_path) 
+
 	
 func unload():
 	# Use timer to set up unloading time
 	# Add points to the score after unloading
 	# Remove ship or make player to release it from dock
 	print('unloading')
+	
+	game_manager.add_points(20)
 
 func destroy():
 	# Apply penalty to the score
 	print('destroyed')
+	game_manager.remove_points(20)
+	
 	queue_free()
 
+func find_closest_point_index(points):
+	if points.size() == 0:
+		return 0
+
+	var closest_index = 0
+	var min_distance = global_position.distance_to(points[0])
+
+	for i in range(1, points.size()):
+		var distance = global_position.distance_to(points[i])
+		if distance < min_distance:
+			min_distance = distance
+			closest_index = i
+
+	return closest_index
 
 # When hits land
 func _on_body_entered(body):
@@ -72,10 +128,23 @@ func _on_area_entered(area):
 	if area.is_in_group('docks'):
 		print('Entered the dock')
 	
-		if nodeColor == area.nodeColor:
+		is_entered_dock = true
+		
+		if node_color == area.node_color:
 			unload()
 		else:
 			print('Wrong color')
 	
 	if area.is_in_group('ships'):
 		destroy()
+
+
+func _on_area_exited(area):
+	if area.is_in_group('docks'):
+		is_entered_dock = false
+		
+		print('Left the dock')
+
+
+func _on_viewport_exited(_viewport):
+	print("out of screen")

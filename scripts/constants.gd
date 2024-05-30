@@ -1,2 +1,2 @@
 class_name Constants
-enum NodeColor { RED, BLUE }
+enum NodeColor { RED, BLUE, GREEN }

@@ -1,27 +1,26 @@
 extends Node2D
 
-@onready var camera = $Camera2D
-
 var selected_ship = null
 var drawing_path = false
 var path_points = []
 var tolerance = 5.0
 var alpha_value = 1.0
 var tween
-
 func _input(event):
+	var mouse_position = event.position
+	
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			if event.pressed:
 				if not drawing_path:
-					selected_ship = get_ship_at_position(camera.get_global_mouse_position())
+					selected_ship = get_ship_at_position(mouse_position)
 					
 					if selected_ship:
 						drawing_path = true
 						path_points = [selected_ship.position]
 			else:
 				drawing_path = false
-				if selected_ship:
+				if selected_ship && is_instance_valid(selected_ship):
 					selected_ship.set_path(simplify_path(path_points, tolerance))
 					selected_ship = null
 					if tween:
@@ -33,7 +32,7 @@ func _input(event):
 
 	elif event is InputEventMouseMotion and drawing_path:
 		if selected_ship:
-			path_points.append(camera.get_global_mouse_position())
+			path_points.append(mouse_position)
 
 func get_ship_at_position(position):
 	for ship in get_tree().get_nodes_in_group("ships"):
@@ -93,3 +92,7 @@ func point_line_distance(point, line_start, line_end):
 
 	var projection = line_start + t * (line_end - line_start)
 	return point.distance_to(projection)
+
+func _on_area_exited(area):
+	if area.is_in_group('ships'):
+		area.queue_free()
