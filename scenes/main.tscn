@@ -1029,12 +1029,9 @@ position = Vector2(951, 897)
 position = Vector2(111, 933)
 rotation = 0.656244
 size = 0
+node_color = 1
 
 [node name="Docks" type="Node" parent="."]
 
 [node name="RedDock" parent="Docks" instance=ExtResource("2_itocx")]
 position = Vector2(401, 200)
-
-[connection signal="draw" from="Ships/RedShip" to="." method="_on_ship_draw"]
-[connection signal="draw" from="Ships/RedShip2" to="." method="_on_ship_draw"]
-[connection signal="draw" from="Ships/BlueShip" to="." method="_on_ship_draw"]

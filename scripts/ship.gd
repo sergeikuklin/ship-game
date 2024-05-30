@@ -13,7 +13,9 @@ var rotation_speed = 15
 var path = []
 var path_index = 0
 var is_entered_dock = false
+
 func _ready():
+	print(node_color)
 	color_tile.material.set_shader_parameter('nodeColor', node_color)
 			
 	match size:
@@ -113,3 +115,7 @@ func _on_area_exited(area):
 		is_entered_dock = false
 		
 		print('Left the dock')
+
+
+func _on_viewport_exited(_viewport):
+	print("out of screen")
