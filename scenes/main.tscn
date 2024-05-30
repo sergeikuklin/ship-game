@@ -1029,25 +1029,64 @@ layer_2/tile_data = PackedInt32Array(-327643, 131072, 0, -262107, 131072, 2, -26
 
 [node name="Ships" type="Node" parent="."]
 
-[node name="RedShipRight" parent="Ships" instance=ExtResource("4_n738c")]
+[node name="RedShip1" parent="Ships" instance=ExtResource("4_n738c")]
 position = Vector2(2010, 715)
 rotation = -1.37881
 
-[node name="BlueShipLeft" parent="Ships" instance=ExtResource("4_n738c")]
-position = Vector2(-236, 977)
-rotation = 0.656244
-size = 0
-
-[node name="BlueShipTopRight" parent="Ships" instance=ExtResource("4_n738c")]
+[node name="BlueShip1" parent="Ships" instance=ExtResource("4_n738c")]
 position = Vector2(1593, -225)
 rotation = 4.04742
 node_color = 1
-spawn_delay = 4.0
+
+[node name="RedShip2" parent="Ships" instance=ExtResource("4_n738c")]
+position = Vector2(-236, 977)
+rotation = 0.656244
+size = 0
+spawn_delay = 5.0
+
+[node name="BlueShip2" parent="Ships" instance=ExtResource("4_n738c")]
+position = Vector2(-84, 1262)
+rotation = 6.96212
+size = 0
+node_color = 1
+spawn_delay = 7.0
+
+[node name="RedShip3" parent="Ships" instance=ExtResource("4_n738c")]
+position = Vector2(204, 1313)
+rotation = 6.96212
+size = 0
+spawn_delay = 13.0
+
+[node name="RedShip4" parent="Ships" instance=ExtResource("4_n738c")]
+position = Vector2(843, -196)
+rotation = 2.47662
+spawn_delay = 13.0
+
+[node name="BlueShip3" parent="Ships" instance=ExtResource("4_n738c")]
+position = Vector2(1301, -111)
+rotation = 9.70229
+size = 0
+node_color = 1
+spawn_delay = 20.0
+
+[node name="RedShip5" parent="Ships" instance=ExtResource("4_n738c")]
+position = Vector2(843, -196)
+rotation = 2.47662
+size = 0
+spawn_delay = 23.0
+
+[node name="BlueShip4" parent="Ships" instance=ExtResource("4_n738c")]
+position = Vector2(-179, 578)
+rotation = 2.35445
+node_color = 1
+spawn_delay = 24.0
 
 [node name="GreenShipBottom" parent="Ships" instance=ExtResource("4_n738c")]
 position = Vector2(646, 1226)
 rotation = -0.525344
 node_color = 2
+
+[node name="Timer" type="Timer" parent="Ships"]
 
 [node name="Docks" type="Node" parent="."]
 
