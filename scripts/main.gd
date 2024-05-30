@@ -1,7 +1,5 @@
 extends Node2D
 
-@onready var camera = $Camera2D
-
 var selected_ship = null
 var drawing_path = false
 var path_points = []

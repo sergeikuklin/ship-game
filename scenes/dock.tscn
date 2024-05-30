@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://bpv7ysthvbclr"]
+[gd_scene load_steps=11 format=3 uid="uid://bpv7ysthvbclr"]
 
 [ext_resource type="Script" path="res://scripts/dock.gd" id="1_htcxl"]
+[ext_resource type="Shader" path="res://scenes/color.gdshader" id="2_6ef0n"]
 [ext_resource type="Texture2D" uid="uid://fxgk10iq4na0" path="res://assets/Terrain/Terrain (16x16).png" id="2_uvwmo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5l2y3"]
@@ -170,6 +171,161 @@ texture = ExtResource("2_uvwmo")
 [sub_resource type="TileSet" id="TileSet_by2ue"]
 sources/0 = SubResource("TileSetAtlasSource_sepbl")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uvxnm"]
+resource_local_to_scene = true
+shader = ExtResource("2_6ef0n")
+shader_parameter/nodeColor = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rquyw"]
+texture = ExtResource("2_uvwmo")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+8:0/0 = 0
+9:0/0 = 0
+10:0/0 = 0
+12:0/0 = 0
+13:0/0 = 0
+14:0/0 = 0
+15:0/0 = 0
+17:0/0 = 0
+18:0/0 = 0
+19:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+6:1/0 = 0
+7:1/0 = 0
+8:1/0 = 0
+9:1/0 = 0
+10:1/0 = 0
+12:1/0 = 0
+13:1/0 = 0
+14:1/0 = 0
+15:1/0 = 0
+17:1/0 = 0
+18:1/0 = 0
+19:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+6:2/0 = 0
+7:2/0 = 0
+8:2/0 = 0
+13:2/0 = 0
+14:2/0 = 0
+15:2/0 = 0
+17:2/0 = 0
+18:2/0 = 0
+19:2/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+4:4/0 = 0
+6:4/0 = 0
+7:4/0 = 0
+8:4/0 = 0
+9:4/0 = 0
+10:4/0 = 0
+12:4/0 = 0
+13:4/0 = 0
+14:4/0 = 0
+15:4/0 = 0
+17:4/0 = 0
+18:4/0 = 0
+19:4/0 = 0
+20:4/0 = 0
+21:4/0 = 0
+0:5/0 = 0
+1:5/0 = 0
+2:5/0 = 0
+3:5/0 = 0
+4:5/0 = 0
+6:5/0 = 0
+7:5/0 = 0
+8:5/0 = 0
+9:5/0 = 0
+10:5/0 = 0
+12:5/0 = 0
+13:5/0 = 0
+14:5/0 = 0
+15:5/0 = 0
+17:5/0 = 0
+18:5/0 = 0
+19:5/0 = 0
+20:5/0 = 0
+21:5/0 = 0
+0:6/0 = 0
+1:6/0 = 0
+2:6/0 = 0
+6:6/0 = 0
+7:6/0 = 0
+8:6/0 = 0
+13:6/0 = 0
+14:6/0 = 0
+15:6/0 = 0
+17:6/0 = 0
+18:6/0 = 0
+19:6/0 = 0
+0:8/0 = 0
+1:8/0 = 0
+2:8/0 = 0
+3:8/0 = 0
+4:8/0 = 0
+6:8/0 = 0
+7:8/0 = 0
+8:8/0 = 0
+9:8/0 = 0
+10:8/0 = 0
+12:8/0 = 0
+13:8/0 = 0
+14:8/0 = 0
+15:8/0 = 0
+17:8/0 = 0
+18:8/0 = 0
+19:8/0 = 0
+20:8/0 = 0
+0:9/0 = 0
+1:9/0 = 0
+2:9/0 = 0
+3:9/0 = 0
+4:9/0 = 0
+6:9/0 = 0
+7:9/0 = 0
+8:9/0 = 0
+9:9/0 = 0
+10:9/0 = 0
+12:9/0 = 0
+13:9/0 = 0
+14:9/0 = 0
+15:9/0 = 0
+17:9/0 = 0
+18:9/0 = 0
+19:9/0 = 0
+20:9/0 = 0
+0:10/0 = 0
+1:10/0 = 0
+2:10/0 = 0
+6:10/0 = 0
+7:10/0 = 0
+8:10/0 = 0
+13:10/0 = 0
+14:10/0 = 0
+15:10/0 = 0
+18:10/0 = 0
+19:10/0 = 0
+20:10/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_i45fi"]
+sources/1 = SubResource("TileSetAtlasSource_rquyw")
+
 [node name="Dock" type="Area2D" groups=["docks"]]
 script = ExtResource("1_htcxl")
 
@@ -178,8 +334,15 @@ position = Vector2(0, -20.6952)
 shape = SubResource("RectangleShape2D_5l2y3")
 script = SubResource("GDScript_37db8")
 
-[node name="TileMap" type="TileMap" parent="."]
+[node name="GateTileMap" type="TileMap" parent="."]
 scale = Vector2(2.5, 2.5)
 tile_set = SubResource("TileSet_by2ue")
 format = 2
 layer_0/tile_data = PackedInt32Array(-65535, 983040, 1, -65538, 983040, 0, -131074, 786432, 0, -196607, 917504, 0, -196608, 851968, 0, -131073, 851968, 0, -2, 983040, 1, -131071, 983040, 0, 1, 983040, 2, 65534, 983040, 2)
+
+[node name="ColorTile" type="TileMap" parent="."]
+material = SubResource("ShaderMaterial_uvxnm")
+scale = Vector2(2.5, 2.5)
+tile_set = SubResource("TileSet_i45fi")
+format = 2
+layer_0/tile_data = PackedInt32Array(-131073, 1114113, 9, -196608, 1114113, 9)

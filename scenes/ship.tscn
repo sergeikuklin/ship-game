@@ -1,8 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://lfqjsqp1btri"]
+[gd_scene load_steps=18 format=3 uid="uid://lfqjsqp1btri"]
 
 [ext_resource type="Texture2D" uid="uid://h45ojcvm7usl" path="res://assets/Boat Idle/Boat free Redish Brown.png" id="1_218gq"]
 [ext_resource type="Script" path="res://scripts/ship.gd" id="1_p2ajv"]
 [ext_resource type="Texture2D" uid="uid://bxjngxp1pxhb2" path="res://assets/Sprite Boat moving fast/Boat Free Fast Moving Redish.png" id="2_6ee1a"]
+[ext_resource type="Shader" path="res://scenes/color.gdshader" id="2_hf2nu"]
+[ext_resource type="Texture2D" uid="uid://fxgk10iq4na0" path="res://assets/Terrain/Terrain (16x16).png" id="5_um5pv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ba068"]
 atlas = ExtResource("1_218gq")
@@ -70,6 +72,161 @@ animations = [{
 radius = 16.0
 height = 76.0
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0ns2f"]
+resource_local_to_scene = true
+shader = ExtResource("2_hf2nu")
+shader_parameter/nodeColor = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_48fme"]
+texture = ExtResource("5_um5pv")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+8:0/0 = 0
+9:0/0 = 0
+10:0/0 = 0
+12:0/0 = 0
+13:0/0 = 0
+14:0/0 = 0
+15:0/0 = 0
+17:0/0 = 0
+18:0/0 = 0
+19:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+6:1/0 = 0
+7:1/0 = 0
+8:1/0 = 0
+9:1/0 = 0
+10:1/0 = 0
+12:1/0 = 0
+13:1/0 = 0
+14:1/0 = 0
+15:1/0 = 0
+17:1/0 = 0
+18:1/0 = 0
+19:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+6:2/0 = 0
+7:2/0 = 0
+8:2/0 = 0
+13:2/0 = 0
+14:2/0 = 0
+15:2/0 = 0
+17:2/0 = 0
+18:2/0 = 0
+19:2/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+4:4/0 = 0
+6:4/0 = 0
+7:4/0 = 0
+8:4/0 = 0
+9:4/0 = 0
+10:4/0 = 0
+12:4/0 = 0
+13:4/0 = 0
+14:4/0 = 0
+15:4/0 = 0
+17:4/0 = 0
+18:4/0 = 0
+19:4/0 = 0
+20:4/0 = 0
+21:4/0 = 0
+0:5/0 = 0
+1:5/0 = 0
+2:5/0 = 0
+3:5/0 = 0
+4:5/0 = 0
+6:5/0 = 0
+7:5/0 = 0
+8:5/0 = 0
+9:5/0 = 0
+10:5/0 = 0
+12:5/0 = 0
+13:5/0 = 0
+14:5/0 = 0
+15:5/0 = 0
+17:5/0 = 0
+18:5/0 = 0
+19:5/0 = 0
+20:5/0 = 0
+21:5/0 = 0
+0:6/0 = 0
+1:6/0 = 0
+2:6/0 = 0
+6:6/0 = 0
+7:6/0 = 0
+8:6/0 = 0
+13:6/0 = 0
+14:6/0 = 0
+15:6/0 = 0
+17:6/0 = 0
+18:6/0 = 0
+19:6/0 = 0
+0:8/0 = 0
+1:8/0 = 0
+2:8/0 = 0
+3:8/0 = 0
+4:8/0 = 0
+6:8/0 = 0
+7:8/0 = 0
+8:8/0 = 0
+9:8/0 = 0
+10:8/0 = 0
+12:8/0 = 0
+13:8/0 = 0
+14:8/0 = 0
+15:8/0 = 0
+17:8/0 = 0
+18:8/0 = 0
+19:8/0 = 0
+20:8/0 = 0
+0:9/0 = 0
+1:9/0 = 0
+2:9/0 = 0
+3:9/0 = 0
+4:9/0 = 0
+6:9/0 = 0
+7:9/0 = 0
+8:9/0 = 0
+9:9/0 = 0
+10:9/0 = 0
+12:9/0 = 0
+13:9/0 = 0
+14:9/0 = 0
+15:9/0 = 0
+17:9/0 = 0
+18:9/0 = 0
+19:9/0 = 0
+20:9/0 = 0
+0:10/0 = 0
+1:10/0 = 0
+2:10/0 = 0
+6:10/0 = 0
+7:10/0 = 0
+8:10/0 = 0
+13:10/0 = 0
+14:10/0 = 0
+15:10/0 = 0
+18:10/0 = 0
+19:10/0 = 0
+20:10/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_jkmoh"]
+sources/0 = SubResource("TileSetAtlasSource_48fme")
+
 [node name="Ship" type="Area2D" groups=["ships"]]
 z_index = 1
 script = ExtResource("1_p2ajv")
@@ -84,6 +241,12 @@ autoplay = "move"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 4)
 shape = SubResource("CapsuleShape2D_yyhrj")
+
+[node name="ColorTile" type="TileMap" parent="."]
+material = SubResource("ShaderMaterial_0ns2f")
+tile_set = SubResource("TileSet_jkmoh")
+format = 2
+layer_0/tile_data = PackedInt32Array(131071, 1114112, 9, 65536, 1114112, 9)
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_area_exited"]

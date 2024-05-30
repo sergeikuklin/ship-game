@@ -5,13 +5,16 @@ enum ShipSize { LARGE, MEDIUM, SMALL }
 @export var size = ShipSize.MEDIUM
 @export var nodeColor:Constants.NodeColor = Constants.NodeColor.RED
 
+@onready var colorTile = $ColorTile
+
 var speed = 200
 var rotation_speed = 15
 var path = []
 var path_index = 0
 var is_entered_dock = false
-
 func _ready():
+	colorTile.material.set_shader_parameter('nodeColor', nodeColor)
+			
 	match size:
 		ShipSize.LARGE:
 			speed = 100
