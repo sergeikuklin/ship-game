@@ -22,9 +22,9 @@ var is_entered_dock = false
 func _ready():
 	if spawn_delay == 0:
 		spawn = true
-		
-	spawn_timer.wait_time = spawn_delay
-	spawn_timer.start();
+	else:	
+		spawn_timer.wait_time = spawn_delay
+		spawn_timer.start();
 		
 	match size:
 		ShipSize.LARGE:
