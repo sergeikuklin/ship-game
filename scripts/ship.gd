@@ -15,9 +15,7 @@ var path = []
 var path_index = 0
 var is_entered_dock = false
 
-func _ready():
-	print(node_color)
-			
+func _ready():			
 	match size:
 		ShipSize.LARGE:
 			large_color_tile.material.set_shader_parameter('nodeColor', node_color)
