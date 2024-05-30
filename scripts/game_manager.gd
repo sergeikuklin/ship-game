@@ -36,4 +36,4 @@ func _on_request_completed(result, response_code, headers, body):
 # Handle the scores data as needed.
 func handle_scores(scores):
 	for score in scores:
-		print("Score by %s: %d" % [score.name, 80])
+		print("Score by %s: %d" % [score.name, score.score])
