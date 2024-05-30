@@ -23,7 +23,7 @@ func _input(event):
 						path_points = [selected_ship.position]
 			else:
 				drawing_path = false
-				if selected_ship:
+				if selected_ship && is_instance_valid(selected_ship):
 					selected_ship.set_path(simplify_path(path_points, tolerance))
 					selected_ship = null
 					if tween:
