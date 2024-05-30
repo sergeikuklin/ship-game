@@ -22,6 +22,8 @@ var path_index = 0
 var is_entered_dock = false
 var is_dead = false
 var path_draw_count = 0;
+var score_points = 20;
+
 
 func _ready():
 	if spawn_delay == 0:
@@ -42,9 +44,6 @@ func _ready():
 			$AnimatedSprite2D.animation = 'move_medium'
 			add_container(ContainerScene, 0)
 			add_container(ContainerScene, 1)
-
-func path_drawn():
-	path_draw_count+=1
 
 func add_container(scene, index):
 	var instance = scene.instantiate()
@@ -97,8 +96,11 @@ func follow_path(delta):
 		path_index += 1
 
 func set_path(new_path):
+	path_draw_count+=1
+	if path_draw_count >= 3 && score_points > 5:
+		score_points-=5
+	
 	var closest_index = find_closest_point_index(new_path)
-
 	path = new_path
 	path_index = closest_index
 
@@ -118,6 +120,7 @@ func destroy():
 	# Apply penalty to the score
 	print('destroyed')
 	game_manager.remove_points(20)
+	
 	$AnimatedSprite2D.animation = 'explode'
 	$AnimatedSprite2D.play()
 	$ContainersGoHere.hide()
@@ -139,7 +142,7 @@ func find_closest_point_index(points):
 	return closest_index
 
 # When hits land
-func _on_body_entered():
+func _on_body_entered(_body):
 	destroy()
 
 func _on_area_entered(area):
@@ -171,7 +174,7 @@ func _on_timer_timeout():
 	var count = remove_container();
 	
 	if count != null:
-		game_manager.add_points(20)
+		game_manager.add_points(score_points)
 		
 		if count > 0:
 			unloadContainer()
