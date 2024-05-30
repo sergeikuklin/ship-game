@@ -70,9 +70,8 @@ animations = [{
 radius = 16.0
 height = 76.0
 
-[node name="Ship" type="Area2D"]
+[node name="Ship" type="Area2D" groups=["ships"]]
 z_index = 1
-collision_layer = 2
 script = ExtResource("1_p2ajv")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

@@ -1050,7 +1050,6 @@ texture = ExtResource("3_6srqk")
 
 [sub_resource type="TileSet" id="TileSet_t6k61"]
 physics_layer_0/collision_layer = 1
-physics_layer_0/collision_mask = 2
 sources/0 = SubResource("TileSetAtlasSource_0r8xv")
 sources/3 = SubResource("TileSetAtlasSource_mm10p")
 
@@ -1074,11 +1073,13 @@ position = Vector2(2.08165e-12, 2.08165e-12)
 
 [node name="Ships" type="Node" parent="."]
 
-[node name="RedShip" parent="Ships" groups=["ships"] instance=ExtResource("4_n738c")]
-position = Vector2(216, 171)
+[node name="RedShip" parent="Ships" instance=ExtResource("4_n738c")]
+position = Vector2(241, 84)
+rotation = -6.6497
 
-[node name="BlueShip" parent="Ships" groups=["ships"] instance=ExtResource("4_n738c")]
-position = Vector2(-177, 179)
+[node name="BlueShip" parent="Ships" instance=ExtResource("4_n738c")]
+position = Vector2(-377, 14)
+rotation = 0.656244
 size = 0
 nodeColor = 1
 

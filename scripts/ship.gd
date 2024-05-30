@@ -47,16 +47,29 @@ func set_path(new_path):
 	
 	
 func unload():
+	# Use timer to set up unloading time
+	# Add points to the score after unloading
+	# Remove ship or make player to release it from dock
+	
+	
 	print('unloading')
 
+func destroy():
+	print('destroyed')
 
+
+# When hits land
 func _on_body_entered(body):
-	print('hit')
+	destroy()
 
 func _on_area_entered(area):
-	print('Entered the dock')
+	if area.is_in_group('docks'):
+		print('Entered the dock')
 	
-	if nodeColor == area.nodeColor:
-		unload()
-	else:
-		print('Wrong color')
+		if nodeColor == area.nodeColor:
+			unload()
+		else:
+			print('Wrong color')
+	
+	if area.is_in_group('ships'):
+		destroy()

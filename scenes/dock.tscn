@@ -19,8 +19,7 @@ func _process(delta):
 	pass
 "
 
-[node name="Dock" type="Area2D"]
-collision_mask = 2
+[node name="Dock" type="Area2D" groups=["docks"]]
 script = ExtResource("1_htcxl")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
