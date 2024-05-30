@@ -1,14 +1,11 @@
 extends Node2D
 
-@onready var camera = $Camera2D
-
 var selected_ship = null
 var drawing_path = false
 var path_points = []
 var tolerance = 5.0
 var alpha_value = 1.0
 var tween
-
 func _input(event):
 	var mouse_position = event.position
 	
@@ -23,7 +20,7 @@ func _input(event):
 						path_points = [selected_ship.position]
 			else:
 				drawing_path = false
-				if selected_ship:
+				if selected_ship && is_instance_valid(selected_ship):
 					selected_ship.set_path(simplify_path(path_points, tolerance))
 					selected_ship = null
 					if tween:
@@ -95,3 +92,7 @@ func point_line_distance(point, line_start, line_end):
 
 	var projection = line_start + t * (line_end - line_start)
 	return point.distance_to(projection)
+
+func _on_area_exited(area):
+	if area.is_in_group('ships'):
+		area.queue_free()
