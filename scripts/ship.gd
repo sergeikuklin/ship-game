@@ -24,6 +24,7 @@ var path_index = 0
 var is_entered_dock = false
 var is_dead = false
 
+
 func _ready():
 	if spawn_delay == 0:
 		spawn = true
@@ -103,12 +104,12 @@ func set_path(new_path):
 	path_index = find_closest_point_index(new_path)
 
 func unloadingDone():
-	rotate(PI)
+	rotation = rotation-PI
 
-func repositionInDock(dockPosition):
+func repositionInDock(dock):
 	clearPath()
-	position = dockPosition
-	rotation = 0
+	position = dock.position
+	rotation = dock.rotation
 
 func unloadContainer():
 	timer.one_shot = true
@@ -146,7 +147,7 @@ func _on_area_entered(area):
 		print('Entered the dock')
 
 		is_entered_dock = true
-		repositionInDock(area.position)
+		repositionInDock(area)
 
 		if node_color == area.node_color:
 			unloadContainer()
