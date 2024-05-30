@@ -46,6 +46,8 @@ app.get('/reset', (req: Request, res: Response) => {
   res.status(200)
 });
 
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
+const port = process.env.PORT || PORT;
+
+app.listen(port, () => {
+  console.log(`Server running on http://localhost:${port}`);
 });

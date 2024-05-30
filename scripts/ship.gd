@@ -1,6 +1,7 @@
 extends Area2D
 
 enum ShipSize { LARGE, MEDIUM, SMALL }
+var ContainerScene = ResourceLoader.load("res://scenes/container.tscn")
 
 @export var size = ShipSize.MEDIUM
 @export var node_color:Constants.NodeColor = Constants.NodeColor.RED
@@ -10,6 +11,8 @@ enum ShipSize { LARGE, MEDIUM, SMALL }
 @onready var large_color_tile = $LargeColorTile
 @onready var game_manager = %GameManager
 @onready var spawn_timer = $SpawnTimer
+@onready var timer = $Timer
+
 
 
 var spawn = false
@@ -18,36 +21,53 @@ var rotation_speed = 15
 var path = []
 var path_index = 0
 var is_entered_dock = false
+var containers = 3
 
 func _ready():
 	if spawn_delay == 0:
 		spawn = true
-	else:	
+	else:
 		spawn_timer.wait_time = spawn_delay
 		spawn_timer.start();
-		
+
 	match size:
 		ShipSize.LARGE:
 			large_color_tile.material.set_shader_parameter('nodeColor', node_color)
 			speed = 100
 			$AnimatedSprite2D.animation = 'move_large'
-			$mediumColorTile.hide()
+			add_container(ContainerScene, 0)
+			add_container(ContainerScene, 1)
+			add_container(ContainerScene, 2)
 		ShipSize.MEDIUM:
 			medium_color_tile.material.set_shader_parameter('nodeColor', node_color)
 			speed = 200
 			$AnimatedSprite2D.animation = 'move_medium'
-			$LargeColorTile.hide()
+			add_container(ContainerScene, 0)
+			add_container(ContainerScene, 1)
+
+
+func add_container(scene, index):
+	var instance = scene.instantiate()
+	instance.node_color=node_color
+	instance.position = Vector2(0, -4 + index*18)
+	$ContainersGoHere.add_child(instance)
+
+func remove_container():
+	if $ContainersGoHere.get_child_count() == 0:
+		return null
+	$ContainersGoHere.get_children().pop_back().queue_free()
+	return 'success'
 
 func _process(delta):
 	if !spawn:
 		return
 	if path.size() > 0 and path_index < path.size():
 		follow_path(path, delta)
-		
+
 	elif path_index >= path.size():
 		path.clear()
 		path_index = 0
-		
+
 	if path.size() == 0 && !is_entered_dock:
 		var forward_direction = Vector2(cos(rotation - PI / 2), sin(rotation - PI / 2))
 		position += forward_direction * speed * delta
@@ -56,14 +76,14 @@ func _process(delta):
 func follow_path(path, delta):
 	var target_position = path[path_index]
 	var direction = (target_position - position).normalized()
-		
+
 	# Check if the direction vector has a non-zero length
 	if direction.length() > 0:
 		# Calculate rotation angle based on the direction vector
 		var target_angle = direction.angle() + PI / 2 # Add 90 degrees (PI / 2 radians) to make the ship face its nose correctly
 
 		rotation = lerp_angle(rotation, target_angle, rotation_speed * delta)
-		
+
 		# Move ship towards the target position
 		position += direction * speed * delta
 
@@ -75,22 +95,21 @@ func set_path(new_path):
 	var closest_index = find_closest_point_index(new_path)
 
 	path = new_path
-	path_index = find_closest_point_index(new_path) 
+	path_index = find_closest_point_index(new_path)
 
-	
-func unload():
-	# Use timer to set up unloading time
-	# Add points to the score after unloading
-	# Remove ship or make player to release it from dock
-	print('unloading')
-	
-	game_manager.add_points(20)
+
+func repositionInDock(dockPosition):
+	set_path([dockPosition])
+
+func unloadContainer():
+	timer.one_shot = true
+	timer.start(1)
 
 func destroy():
 	# Apply penalty to the score
 	print('destroyed')
 	game_manager.remove_points(20)
-	
+
 	queue_free()
 
 func find_closest_point_index(points):
@@ -115,23 +134,35 @@ func _on_body_entered(body):
 func _on_area_entered(area):
 	if area.is_in_group('docks'):
 		print('Entered the dock')
-	
+
 		is_entered_dock = true
-		
+
 		if node_color == area.node_color:
-			unload()
+			unloadContainer()
 		else:
 			print('Wrong color')
-	
+
 	if area.is_in_group('ships'):
 		destroy()
-
 
 func _on_area_exited(area):
 	if area.is_in_group('docks'):
 		is_entered_dock = false
-		
+
 		print('Left the dock')
 
 func _on_spawn_timer_timeout():
 	spawn = true
+
+func _on_viewport_exited(_viewport):
+	print("out of screen")
+
+
+func _on_timer_timeout():
+	print('TIMER OUT' + str(containers))
+	if containers > 0:
+		containers -= 1
+		game_manager.add_points(20)
+		unloadContainer()
+	else:
+		print("GET OUT")
