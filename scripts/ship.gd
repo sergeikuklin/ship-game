@@ -24,33 +24,28 @@ func _ready():
 			large_color_tile.material.set_shader_parameter('nodeColor', node_color)
 			speed = 100
 			$AnimatedSprite2D.animation = 'move_large'
-			#$mediumColorTile.hide()
-			var instance = ContainerScene.instantiate()
-			instance.node_color=node_color
-			instance.position = Vector2(0, -4)
-			$ContainersGoHere.add_child(instance)
-			var instance2 = ContainerScene.instantiate()
-			instance2.node_color=node_color
-			instance2.position = Vector2(0, 14)
-			$ContainersGoHere.add_child(instance2)
-			var instance3 = ContainerScene.instantiate()
-			instance3.node_color=node_color
-			instance3.position = Vector2(0, 32)
-			$ContainersGoHere.add_child(instance3)
+			add_container(ContainerScene, 0)
+			add_container(ContainerScene, 1)
+			add_container(ContainerScene, 2)
 		ShipSize.MEDIUM:
 			medium_color_tile.material.set_shader_parameter('nodeColor', node_color)
 			speed = 200
 			$AnimatedSprite2D.animation = 'move_medium'
-			#$LargeColorTile.hide()
-			var instance = ContainerScene.instantiate()
-			instance.node_color=node_color
-			instance.position = Vector2(0, -4)
-			$ContainersGoHere.add_child(instance)
-			var instance2 = ContainerScene.instantiate()
-			instance2.position = Vector2(0, 14)
-			instance2.node_color=node_color
-			$ContainersGoHere.add_child(instance2)
+			add_container(ContainerScene, 0)
+			add_container(ContainerScene, 1)
 
+
+func add_container(scene, index): 
+	var instance = scene.instantiate()
+	instance.node_color=node_color
+	instance.position = Vector2(0, -4 + index*18)
+	$ContainersGoHere.add_child(instance)
+	
+func remove_container():
+	if $ContainersGoHere.get_child_count() == 0:
+		return null
+	$ContainersGoHere.get_children().pop_back().queue_free()
+	return 'success'
 
 func _process(delta):
 	if path.size() > 0 and path_index < path.size():
