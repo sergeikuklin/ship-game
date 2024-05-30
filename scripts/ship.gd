@@ -9,6 +9,7 @@ var ContainerScene = ResourceLoader.load("res://scenes/container.tscn")
 @onready var medium_color_tile = $mediumColorTile
 @onready var large_color_tile = $LargeColorTile
 @onready var game_manager = %GameManager
+@onready var timer = $Timer
 
 
 var speed = 200
@@ -16,6 +17,7 @@ var rotation_speed = 15
 var path = []
 var path_index = 0
 var is_entered_dock = false
+var containers = 3
 
 func _ready():			
 	
@@ -58,7 +60,7 @@ func _process(delta):
 	if path.size() == 0 && !is_entered_dock:
 		var forward_direction = Vector2(cos(rotation - PI / 2), sin(rotation - PI / 2))
 		position += forward_direction * speed * delta
-
+	
 
 func follow_path(path, delta):
 	var target_position = path[path_index]
@@ -83,15 +85,14 @@ func set_path(new_path):
 
 	path = new_path
 	path_index = find_closest_point_index(new_path) 
+	
 
-	
-func unload():
-	# Use timer to set up unloading time
-	# Add points to the score after unloading
-	# Remove ship or make player to release it from dock
-	print('unloading')
-	
-	game_manager.add_points(20)
+func repositionInDock(dockPosition):
+	set_path([dockPosition])
+
+func unloadContainer():
+	timer.one_shot = true
+	timer.start(1)
 
 func destroy():
 	# Apply penalty to the score
@@ -124,15 +125,14 @@ func _on_area_entered(area):
 		print('Entered the dock')
 	
 		is_entered_dock = true
-		
+
 		if node_color == area.node_color:
-			unload()
+			unloadContainer()
 		else:
 			print('Wrong color')
 	
 	if area.is_in_group('ships'):
 		destroy()
-
 
 func _on_area_exited(area):
 	if area.is_in_group('docks'):
@@ -143,3 +143,14 @@ func _on_area_exited(area):
 
 func _on_viewport_exited(_viewport):
 	print("out of screen")
+
+
+func _on_timer_timeout():
+	print('TIMER OUT' + str(containers))
+	if containers > 0:
+		containers -= 1
+		game_manager.add_points(20)
+		unloadContainer()
+	else:
+		print("GET OUT")
+		

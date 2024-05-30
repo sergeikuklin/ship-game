@@ -1038,6 +1038,8 @@ rotation = 0.656244
 size = 0
 node_color = 1
 
+[node name="Timer" type="Timer" parent="Ships"]
+
 [node name="Docks" type="Node" parent="."]
 
 [node name="RedDock" parent="Docks" instance=ExtResource("2_itocx")]
