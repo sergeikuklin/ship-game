@@ -8,18 +8,21 @@ script = ExtResource("1_u2tct")
 
 [node name="greenContainer" type="Sprite2D" parent="."]
 visible = false
+scale = Vector2(2.5, 2.5)
 texture = ExtResource("1_0v51m")
 region_enabled = true
 region_rect = Rect2(2.08165e-12, 2.08165e-12, 12, 6)
 
 [node name="redContainer" type="Sprite2D" parent="."]
 visible = false
+scale = Vector2(2.5, 2.5)
 texture = ExtResource("1_0v51m")
 region_enabled = true
 region_rect = Rect2(2.08165e-12, 7, 12, 6)
 
 [node name="blueContainer" type="Sprite2D" parent="."]
 visible = false
+scale = Vector2(2.5, 2.5)
 texture = ExtResource("1_0v51m")
 region_enabled = true
 region_rect = Rect2(2.08165e-12, 14, 12, 6)

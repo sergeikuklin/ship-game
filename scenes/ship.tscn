@@ -1,9 +1,10 @@
-[gd_scene load_steps=28 format=3 uid="uid://lfqjsqp1btri"]
+[gd_scene load_steps=29 format=3 uid="uid://lfqjsqp1btri"]
 
 [ext_resource type="Texture2D" uid="uid://h45ojcvm7usl" path="res://assets/Boat Idle/Boat free Redish Brown.png" id="1_218gq"]
 [ext_resource type="Script" path="res://scripts/ship.gd" id="1_p2ajv"]
 [ext_resource type="Texture2D" uid="uid://bxjngxp1pxhb2" path="res://assets/Sprite Boat moving fast/Boat Free Fast Moving Redish.png" id="2_6ee1a"]
 [ext_resource type="Shader" path="res://scenes/color.gdshader" id="2_hf2nu"]
+[ext_resource type="PackedScene" uid="uid://lmyk51b85hss" path="res://scenes/container.tscn" id="2_lvar2"]
 [ext_resource type="Texture2D" uid="uid://6qinxr2bktgy" path="res://assets/large ship.png" id="3_nvi2u"]
 [ext_resource type="Texture2D" uid="uid://cvakgrdgemg3s" path="res://assets/medium ship.png" id="5_2j1kh"]
 [ext_resource type="Texture2D" uid="uid://fxgk10iq4na0" path="res://assets/Terrain/Terrain (16x16).png" id="5_um5pv"]
@@ -307,11 +308,16 @@ sprite_frames = SubResource("SpriteFrames_qbnv3")
 animation = &"move_large"
 autoplay = "move_medium"
 
+[node name="Container" parent="." instance=ExtResource("2_lvar2")]
+visible = false
+position = Vector2(2.08165e-12, 14)
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 4)
 shape = SubResource("CapsuleShape2D_yyhrj")
 
 [node name="LargeColorTile" type="TileMap" parent="."]
+visible = false
 material = SubResource("ShaderMaterial_0ns2f")
 tile_set = SubResource("TileSet_jkmoh")
 rendering_quadrant_size = 8
@@ -319,11 +325,14 @@ format = 2
 layer_0/tile_data = PackedInt32Array(-196616, 786432, 5, -262136, 786432, 5, 917496, 786432, 5, 851976, 786432, 5, 2031608, 786432, 5, 1966088, 786432, 5)
 
 [node name="mediumColorTile" type="TileMap" parent="."]
+visible = false
 material = SubResource("ShaderMaterial_0ns2f")
 tile_set = SubResource("TileSet_jkmoh")
 rendering_quadrant_size = 8
 format = 2
 layer_0/tile_data = PackedInt32Array(917496, 786432, 5, 851976, 786432, 5, -196616, 786432, 5, -262136, 786432, 5)
+
+[node name="ContainersGoHere" type="Node2D" parent="."]
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_area_exited"]

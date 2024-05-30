@@ -1,6 +1,7 @@
 extends Area2D
 
 enum ShipSize { LARGE, MEDIUM, SMALL }
+var ContainerScene = ResourceLoader.load("res://scenes/container.tscn")
 
 @export var size = ShipSize.MEDIUM
 @export var node_color:Constants.NodeColor = Constants.NodeColor.RED
@@ -9,6 +10,7 @@ enum ShipSize { LARGE, MEDIUM, SMALL }
 @onready var large_color_tile = $LargeColorTile
 @onready var game_manager = %GameManager
 
+
 var speed = 200
 var rotation_speed = 15
 var path = []
@@ -16,17 +18,39 @@ var path_index = 0
 var is_entered_dock = false
 
 func _ready():			
+	
 	match size:
 		ShipSize.LARGE:
 			large_color_tile.material.set_shader_parameter('nodeColor', node_color)
 			speed = 100
 			$AnimatedSprite2D.animation = 'move_large'
-			$mediumColorTile.hide()
+			#$mediumColorTile.hide()
+			var instance = ContainerScene.instantiate()
+			instance.node_color=node_color
+			instance.position = Vector2(0, -4)
+			$ContainersGoHere.add_child(instance)
+			var instance2 = ContainerScene.instantiate()
+			instance2.node_color=node_color
+			instance2.position = Vector2(0, 14)
+			$ContainersGoHere.add_child(instance2)
+			var instance3 = ContainerScene.instantiate()
+			instance3.node_color=node_color
+			instance3.position = Vector2(0, 32)
+			$ContainersGoHere.add_child(instance3)
 		ShipSize.MEDIUM:
 			medium_color_tile.material.set_shader_parameter('nodeColor', node_color)
 			speed = 200
 			$AnimatedSprite2D.animation = 'move_medium'
-			$LargeColorTile.hide()
+			#$LargeColorTile.hide()
+			var instance = ContainerScene.instantiate()
+			instance.node_color=node_color
+			instance.position = Vector2(0, -4)
+			$ContainersGoHere.add_child(instance)
+			var instance2 = ContainerScene.instantiate()
+			instance2.position = Vector2(0, 14)
+			instance2.node_color=node_color
+			$ContainersGoHere.add_child(instance2)
+
 
 func _process(delta):
 	if path.size() > 0 and path_index < path.size():
