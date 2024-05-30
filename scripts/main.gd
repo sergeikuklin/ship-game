@@ -34,6 +34,10 @@ func _input(event):
 		if selected_ship:
 			path_points.append(mouse_position)
 
+func _ready():
+	%GameManager.get_scores()
+	
+	
 func get_ship_at_position(position):
 	for ship in get_tree().get_nodes_in_group("ships"):
 		if ship.get_global_position().distance_to(position) < ship.get_node("CollisionShape2D").shape.get_radius()*7:
