@@ -1049,8 +1049,6 @@ position = Vector2(646, 1226)
 rotation = -0.525344
 node_color = 2
 
-[node name="Timer" type="Timer" parent="Ships"]
-
 [node name="Docks" type="Node" parent="."]
 
 [node name="RedDock" parent="Docks" instance=ExtResource("2_itocx")]
