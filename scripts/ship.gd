@@ -95,9 +95,9 @@ func follow_path(delta):
 	if position.distance_to(target_position) <= 40:
 		path_index += 1
 
-func set_path(new_path):
+func set_path(new_path): 
 	path_draw_count+=1
-	if path_draw_count >= 3 && score_points > 5:
+	if path_draw_count >= 2 && score_points > 5:
 		score_points-=5
 	
 	var closest_index = find_closest_point_index(new_path)
