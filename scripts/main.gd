@@ -92,3 +92,7 @@ func point_line_distance(point, line_start, line_end):
 
 	var projection = line_start + t * (line_end - line_start)
 	return point.distance_to(projection)
+
+func _on_area_exited(area):
+	if area.is_in_group('ships'):
+		area.queue_free()
