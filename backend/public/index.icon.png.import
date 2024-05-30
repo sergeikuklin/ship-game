@@ -2,16 +2,26 @@
 
 importer="texture"
 type="CompressedTexture2D"
+<<<<<<< Updated upstream
 uid="uid://bayh4slv4iobh"
 path="res://.godot/imported/index.icon.png-96098a584bb713a61c1e8aa1df56a1bb.ctex"
+=======
+uid="uid://ccad8fr2lnh6x"
+path="res://.godot/imported/index.icon.png-2901440d7c24e8dd978c5d71833860a9.ctex"
+>>>>>>> Stashed changes
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
+<<<<<<< Updated upstream
 source_file="res://build/index.icon.png"
 dest_files=["res://.godot/imported/index.icon.png-96098a584bb713a61c1e8aa1df56a1bb.ctex"]
+=======
+source_file="res://backend/public/index.icon.png"
+dest_files=["res://.godot/imported/index.icon.png-2901440d7c24e8dd978c5d71833860a9.ctex"]
+>>>>>>> Stashed changes
 
 [params]
 

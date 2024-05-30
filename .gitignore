@@ -6,3 +6,4 @@
 
 /backend/dist
 /build
+/backend/package-lock.json

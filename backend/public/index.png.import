@@ -2,16 +2,26 @@
 
 importer="texture"
 type="CompressedTexture2D"
+<<<<<<< Updated upstream
 uid="uid://y4fnym5wniyi"
 path="res://.godot/imported/index.png-659c11691fe5279cf81f33eb936290a4.ctex"
+=======
+uid="uid://cvsdrn0vlq7v"
+path="res://.godot/imported/index.png-cec55e48d9021f95524fe1be4269af3c.ctex"
+>>>>>>> Stashed changes
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
+<<<<<<< Updated upstream
 source_file="res://build/index.png"
 dest_files=["res://.godot/imported/index.png-659c11691fe5279cf81f33eb936290a4.ctex"]
+=======
+source_file="res://backend/public/index.png"
+dest_files=["res://.godot/imported/index.png-cec55e48d9021f95524fe1be4269af3c.ctex"]
+>>>>>>> Stashed changes
 
 [params]
 
