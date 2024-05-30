@@ -9,6 +9,7 @@ var speed = 200
 var rotation_speed = 15
 var path = []
 var path_index = 0
+var is_entered_dock = false
 
 func _ready():
 	match size:
@@ -24,7 +25,7 @@ func _process(delta):
 		path.clear()
 		path_index = 0
 		
-	if path.size() == 0:
+	if path.size() == 0 && !is_entered_dock:
 		var forward_direction = Vector2(cos(rotation - PI / 2), sin(rotation - PI / 2))
 		position += forward_direction * speed * delta
 
@@ -88,6 +89,8 @@ func _on_area_entered(area):
 	if area.is_in_group('docks'):
 		print('Entered the dock')
 	
+		is_entered_dock = true
+		
 		if nodeColor == area.nodeColor:
 			unload()
 		else:
@@ -95,3 +98,10 @@ func _on_area_entered(area):
 	
 	if area.is_in_group('ships'):
 		destroy()
+
+
+func _on_area_exited(area):
+	if area.is_in_group('docks'):
+		is_entered_dock = false
+		
+		print('Left the dock')
