@@ -8,14 +8,17 @@ uniform int nodeColor = 0;
 
 void fragment() {
 	vec4 pixelColor = texture(TEXTURE, UV);
-	pixelColor.a *= 0.8;
 	
 	if (nodeColor == 0) {
-		pixelColor = vec4(1.0, 0.0, 0.0, pixelColor.a);		
+		pixelColor = pixelColor* vec4(1.0, 0.0, 0.0, pixelColor.a);		
 	}
 	
 	if (nodeColor == 1) {
-		pixelColor = vec4(0.0, 0.0, 1.0, pixelColor.a);		
+		pixelColor = pixelColor* vec4(0.0, 0.0, 1.0, pixelColor.a);		
+	}
+	
+	if (nodeColor == 2) {
+		pixelColor = pixelColor* vec4(0.0, 1.0, 0.0, pixelColor.a);		
 	}
 	COLOR = pixelColor;
 }

@@ -1,13 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://lmyk51b85hss"]
+[gd_scene load_steps=5 format=3 uid="uid://lmyk51b85hss"]
 
 [ext_resource type="Texture2D" uid="uid://en3ktn5jkapl" path="res://assets/containers.png" id="1_0v51m"]
 [ext_resource type="Script" path="res://scenes/container.gd" id="1_u2tct"]
+[ext_resource type="Shader" path="res://scenes/color.gdshader" id="2_s24eb"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rqcl6"]
+resource_local_to_scene = true
+shader = ExtResource("2_s24eb")
+shader_parameter/nodeColor = 0
 
 [node name="Container" type="Node2D"]
 script = ExtResource("1_u2tct")
+node_color = 0
 
 [node name="greenContainer" type="Sprite2D" parent="."]
-visible = false
+material = SubResource("ShaderMaterial_rqcl6")
 scale = Vector2(2.5, 2.5)
 texture = ExtResource("1_0v51m")
 region_enabled = true

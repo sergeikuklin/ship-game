@@ -345,4 +345,4 @@ material = SubResource("ShaderMaterial_uvxnm")
 scale = Vector2(2.5, 2.5)
 tile_set = SubResource("TileSet_i45fi")
 format = 2
-layer_0/tile_data = PackedInt32Array(-131073, 1114113, 9, -196608, 1114113, 9)
+layer_0/tile_data = PackedInt32Array(-131073, 786433, 5, -196608, 786433, 5)

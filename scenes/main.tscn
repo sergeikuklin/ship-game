@@ -1036,6 +1036,12 @@ position = Vector2(334, 1299)
 rotation = 0.0506145
 node_color = 1
 spawn_delay = 4.0
+
+[node name="GreenShip" parent="Ships" instance=ExtResource("4_n738c")]
+position = Vector2(639, 985)
+rotation = 0.0506145
+node_color = 2
+
 [node name="Timer" type="Timer" parent="Ships"]
 
 [node name="Docks" type="Node" parent="."]
