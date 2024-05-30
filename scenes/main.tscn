@@ -1029,24 +1029,24 @@ layer_2/tile_data = PackedInt32Array(-327643, 131072, 0, -262107, 131072, 2, -26
 
 [node name="Ships" type="Node" parent="."]
 
-[node name="RedShip" parent="Ships" instance=ExtResource("4_n738c")]
-position = Vector2(1996, 671)
-rotation = -6.6497
+[node name="RedShipRight" parent="Ships" instance=ExtResource("4_n738c")]
+position = Vector2(2010, 715)
+rotation = -1.37881
 
-[node name="BlueShip" parent="Ships" instance=ExtResource("4_n738c")]
+[node name="BlueShipLeft" parent="Ships" instance=ExtResource("4_n738c")]
 position = Vector2(-236, 977)
 rotation = 0.656244
 size = 0
 
-[node name="BlueShip2" parent="Ships" instance=ExtResource("4_n738c")]
-position = Vector2(334, 1200)
-rotation = 0.0506145
+[node name="BlueShipTopRight" parent="Ships" instance=ExtResource("4_n738c")]
+position = Vector2(1593, -225)
+rotation = 4.04742
 node_color = 1
 spawn_delay = 4.0
 
-[node name="GreenShip" parent="Ships" instance=ExtResource("4_n738c")]
+[node name="GreenShipBottom" parent="Ships" instance=ExtResource("4_n738c")]
 position = Vector2(646, 1226)
-rotation = 0.0506145
+rotation = -0.525344
 node_color = 2
 
 [node name="Timer" type="Timer" parent="Ships"]

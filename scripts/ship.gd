@@ -7,8 +7,6 @@ var ContainerScene = ResourceLoader.load("res://scenes/container.tscn")
 @export var node_color:Constants.NodeColor = Constants.NodeColor.RED
 @export var spawn_delay: float = 0
 
-@onready var medium_color_tile = $mediumColorTile
-@onready var large_color_tile = $LargeColorTile
 @onready var game_manager = %GameManager
 @onready var spawn_timer = $SpawnTimer
 @onready var timer = $Timer
@@ -23,7 +21,7 @@ var path = []
 var path_index = 0
 var is_entered_dock = false
 var is_dead = false
-
+var path_draw_count = 0;
 
 func _ready():
 	if spawn_delay == 0:
@@ -34,19 +32,19 @@ func _ready():
 
 	match size:
 		ShipSize.LARGE:
-			large_color_tile.material.set_shader_parameter('nodeColor', node_color)
 			speed = 100
 			$AnimatedSprite2D.animation = 'move_large'
 			add_container(ContainerScene, 0)
 			add_container(ContainerScene, 1)
 			add_container(ContainerScene, 2)
 		ShipSize.MEDIUM:
-			medium_color_tile.material.set_shader_parameter('nodeColor', node_color)
 			speed = 200
 			$AnimatedSprite2D.animation = 'move_medium'
 			add_container(ContainerScene, 0)
 			add_container(ContainerScene, 1)
 
+func path_drawn():
+	path_draw_count+=1
 
 func add_container(scene, index):
 	var instance = scene.instantiate()
@@ -55,17 +53,18 @@ func add_container(scene, index):
 	$ContainersGoHere.add_child(instance)
 
 func remove_container():
-	if $ContainersGoHere.get_child_count() == 0:
-		return null
-	$ContainersGoHere.get_children().pop_back().queue_free()
-	return 'success'
+	var count = $ContainersGoHere.get_child_count()
+	if count > 0:
+		$ContainersGoHere.get_children().pop_back().queue_free()
+		return count - 1
+	return null
 
 func _process(delta):
 	if !spawn:
 		return
 			
 	if path.size() > 0 and path_index < path.size():
-		follow_path(path, delta)
+		follow_path(delta)
 
 	# JUST STOP
 	elif path_index >= path.size():
@@ -79,7 +78,7 @@ func clearPath():
 	path.clear()
 	path_index = 0
 
-func follow_path(path, delta):
+func follow_path(delta):
 	var target_position = path[path_index]
 	var direction = (target_position - position).normalized()
 
@@ -101,7 +100,7 @@ func set_path(new_path):
 	var closest_index = find_closest_point_index(new_path)
 
 	path = new_path
-	path_index = find_closest_point_index(new_path)
+	path_index = closest_index
 
 func unloadingDone():
 	rotation = rotation-PI
@@ -120,6 +119,7 @@ func destroy():
 	print('destroyed')
 	game_manager.remove_points(20)
 	$AnimatedSprite2D.animation = 'explode'
+	$AnimatedSprite2D.play()
 	$ContainersGoHere.hide()
 	is_dead = true
 
@@ -139,7 +139,7 @@ func find_closest_point_index(points):
 	return closest_index
 
 # When hits land
-func _on_body_entered(body):
+func _on_body_entered():
 	destroy()
 
 func _on_area_entered(area):
@@ -153,6 +153,7 @@ func _on_area_entered(area):
 			unloadContainer()
 		else:
 			print('Wrong color')
+			unloadingDone()
 
 	if area.is_in_group('ships'):
 		destroy()
@@ -167,12 +168,17 @@ func _on_spawn_timer_timeout():
 	spawn = true
 
 func _on_timer_timeout():
-	if remove_container() == 'success':
+	var count = remove_container();
+	
+	if count != null:
 		game_manager.add_points(20)
-		unloadContainer()
-	else:
-		unloadingDone()
-
+		
+		if count > 0:
+			unloadContainer()
+			return;
+	
+	unloadingDone()
+				
 
 func _on_animated_sprite_2d_animation_finished():
 	print("IS DEAD? " + str(is_dead))

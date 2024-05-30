@@ -24,7 +24,7 @@ func get_scores():
 	$HTTPRequest.request(url)
 
 # This method is called when the HTTPRequest node completes the request.
-func _on_request_completed(result, response_code, headers, body):
+func _on_request_completed(_result, response_code, _headers, body):
 	if response_code == 200:
 		# Assuming the response is JSON and contains an array of scores
 		var data = JSON.parse_string(body.get_string_from_utf8())

@@ -21,7 +21,7 @@ func _input(event):
 			else:
 				drawing_path = false
 				if selected_ship && is_instance_valid(selected_ship):
-					selected_ship.set_path(simplify_path(path_points, tolerance))
+					selected_ship.set_path(simplify_path(path_points))
 					selected_ship = null
 					if tween:
 						tween.kill()
@@ -38,9 +38,9 @@ func _ready():
 	%GameManager.get_scores()
 	
 	
-func get_ship_at_position(position):
+func get_ship_at_position(mouse_position):
 	for ship in get_tree().get_nodes_in_group("ships"):
-		if ship.get_global_position().distance_to(position) < ship.get_node("CollisionShape2D").shape.get_radius()*7:
+		if ship.get_global_position().distance_to(mouse_position) < ship.get_node("CollisionShape2D").shape.get_radius()*7:
 			return ship
 	return null
 
@@ -57,7 +57,7 @@ func _draw():
 			
 			
 	
-func simplify_path(points, tolerance):
+func simplify_path(points):
 	if points.size() < 3:
 		return points
 
@@ -74,8 +74,8 @@ func simplify_path(points, tolerance):
 			index = i
 
 	if max_distance > tolerance:
-		var first_half = simplify_path(points.slice(0, index + 1), tolerance)
-		var second_half = simplify_path(points.slice(index, points.size()), tolerance)
+		var first_half = simplify_path(points.slice(0, index + 1))
+		var second_half = simplify_path(points.slice(index, points.size()))
 
 		return first_half.slice(0, first_half.size() - 1) + second_half
 	else:
