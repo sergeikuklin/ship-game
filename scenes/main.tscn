@@ -1027,17 +1027,26 @@ layer_2/tile_data = PackedInt32Array(-327643, 131072, 0, -262107, 131072, 2, -26
 [node name="Ships" type="Node" parent="."]
 
 [node name="RedShip" parent="Ships" instance=ExtResource("4_n738c")]
-position = Vector2(1609, 829)
-rotation = -6.6497
+position = Vector2(1960, 780)
+rotation = -0.883137
+spawn_delay = 10.0
 
 [node name="RedShip2" parent="Ships" instance=ExtResource("4_n738c")]
-position = Vector2(951, 897)
+position = Vector2(920, 1128)
 
 [node name="BlueShip" parent="Ships" instance=ExtResource("4_n738c")]
-position = Vector2(111, 933)
+position = Vector2(-83, 1145)
 rotation = 0.656244
 size = 0
 node_color = 1
+
+[node name="BlueShip2" parent="Ships" instance=ExtResource("4_n738c")]
+position = Vector2(334, 1299)
+rotation = 0.0506145
+node_color = 1
+spawn_delay = 4.0
+
+[node name="FirstWave" type="Node" parent="Ships"]
 
 [node name="Docks" type="Node" parent="."]
 

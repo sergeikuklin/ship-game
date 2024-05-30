@@ -4,18 +4,28 @@ enum ShipSize { LARGE, MEDIUM, SMALL }
 
 @export var size = ShipSize.MEDIUM
 @export var node_color:Constants.NodeColor = Constants.NodeColor.RED
+@export var spawn_delay: float = 0
 
 @onready var medium_color_tile = $mediumColorTile
 @onready var large_color_tile = $LargeColorTile
 @onready var game_manager = %GameManager
+@onready var spawn_timer = $SpawnTimer
 
+
+var spawn = false
 var speed = 200
 var rotation_speed = 15
 var path = []
 var path_index = 0
 var is_entered_dock = false
 
-func _ready():			
+func _ready():
+	if spawn_delay == 0:
+		spawn = true
+		
+	spawn_timer.wait_time = spawn_delay
+	spawn_timer.start();
+		
 	match size:
 		ShipSize.LARGE:
 			large_color_tile.material.set_shader_parameter('nodeColor', node_color)
@@ -29,6 +39,8 @@ func _ready():
 			$LargeColorTile.hide()
 
 func _process(delta):
+	if !spawn:
+		return
 	if path.size() > 0 and path_index < path.size():
 		follow_path(path, delta)
 		
@@ -121,6 +133,5 @@ func _on_area_exited(area):
 		
 		print('Left the dock')
 
-
-func _on_viewport_exited(_viewport):
-	print("out of screen")
+func _on_spawn_timer_timeout():
+	spawn = true

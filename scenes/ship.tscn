@@ -325,6 +325,10 @@ rendering_quadrant_size = 8
 format = 2
 layer_0/tile_data = PackedInt32Array(917496, 786432, 5, 851976, 786432, 5, -196616, 786432, 5, -262136, 786432, 5)
 
+[node name="SpawnTimer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_area_exited"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
