@@ -12,6 +12,6 @@ func _process(delta):
 
 
 func _on_button_pressed():
+	print('called game over')
 	%GameManager.user_name = $TextEdit.text
 	%GameManager.post_score()
-	get_tree().change_scene_to_file("res://scenes/title.tscn")

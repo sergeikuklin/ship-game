@@ -49,6 +49,7 @@ func handle_scores(scores):
 
 
 func post_score():
+	print("rrrr")
 	var url = "https://ship-game-3.onrender.com/score"
 	var unique_id = randi()  # Generate a random integer for ID
 	var data = {
@@ -63,6 +64,7 @@ func post_score():
 func _on_post_request_completed(_result, response_code, _headers, body):
 	if response_code == 201:
 		print("Score posted successfully.", body.get_string_from_utf8())
+		get_tree().change_scene_to_file("res://scenes/title.tscn")
 	else:
 		print("Failed to post score. HTTP Response Code: ", response_code )
 
