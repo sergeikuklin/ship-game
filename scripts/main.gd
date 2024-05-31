@@ -114,6 +114,7 @@ func handle_levels():
 	var level1_ships_count = $Level1/Ships.get_child_count()
 	if level1_ships_count == 0:
 		if %GameManager.score >=100:
+			%GameManager.change_level(2)
 			$Level1.set_process_mode(PROCESS_MODE_DISABLED)
 			$Level1.hide()
 			$Level1/TileMap.set_layer_enabled(0, false)

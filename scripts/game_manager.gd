@@ -1,6 +1,8 @@
 extends Node
 var score = 0
 @onready var score_label = $ScoreLabel
+@onready var level_label = $LevelLabel
+
 var user_name = ''
 
 func add_points(point):
@@ -9,6 +11,8 @@ func add_points(point):
 	
 	score_label.text = 'Score: ' + str(score)
 	
+func change_level(level):
+	level_label.text = 'Level: ' + str(level)
 	
 func remove_points(point):
 	print('Remove ' + str(point) + ' points')
