@@ -37,12 +37,7 @@ func _input(event):
 		var mouse_position = event.position
 		
 		if selected_ship:
-			path_points.append(mouse_position)
-
-func _ready():
-	%GameManager.get_scores()
-	
-	
+			path_points.append(mouse_position)	
 	
 func get_ship_at_position(mouse_position):
 	for ship in get_tree().get_nodes_in_group("ships"):

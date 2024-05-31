@@ -1246,7 +1246,7 @@ position = Vector2(120, 838)
 rotation = -1.5708
 
 [node name="BlueDock" parent="Level2/Docks" instance=ExtResource("2_itocx")]
-position = Vector2(1799, 251)
+position = Vector2(1799, 243)
 rotation = 1.5708
 node_color = 1
 
