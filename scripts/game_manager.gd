@@ -20,16 +20,21 @@ func remove_points(point):
 # Function to initiate the API call.
 func get_scores():
 	var url = "https://ship-game-3.onrender.com/score"
-	$HTTPRequest.request_completed.connect(_on_request_completed)
+	var headers = ["Content-Type: application/json"]
+	$HTTPRequest.request_completed.connect(_on_get_request_completed)
 	$HTTPRequest.request(url)
 
 # This method is called when the HTTPRequest node completes the request.
-func _on_request_completed(_result, response_code, _headers, body):
+func _on_get_request_completed(_result, response_code, _headers, body):
 	if response_code == 200:
-		# Assuming the response is JSON and contains an array of scores
-		var data = JSON.parse_string(body.get_string_from_utf8())
-		print("Received data: ", data)
-		handle_scores(data)
+		var json = JSON.new()
+		var error = json.parse(body.get_string_from_utf8())
+		if error != OK:
+			print("Failed to parse JSON: ", error)
+			return
+
+		var response = json.get_data()
+		handle_scores(response)
 	else:
 		print("Failed to get scores. HTTP Response Code: ", response_code)
 
@@ -38,6 +43,26 @@ func handle_scores(scores):
 	for score in scores:
 		print("Score by %s: %d" % [score.name, score.score])
 
+
+func post_score():
+	var url = "https://ship-game-3.onrender.com/score"
+	var unique_id = randi()  # Generate a random integer for ID
+	var data = {
+		"id": unique_id,
+		"name": user_name,
+		"score": score
+	}
+	var headers = ["Content-Type: application/json"]
+	$HTTPRequest.request_completed.connect(_on_post_request_completed)
+	$HTTPRequest.request(url, headers, HTTPClient.METHOD_POST, JSON.stringify(data))
+
+func _on_post_request_completed(_result, response_code, _headers, body):
+	if response_code == 201:
+		print("Score posted successfully.", body.get_string_from_utf8())
+	else:
+		print("Failed to post score. HTTP Response Code: ", response_code )
+
 func handle_game_over():
 	print(user_name)
 	print('Game over')
+	post_score()
