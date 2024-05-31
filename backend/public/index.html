@@ -24,11 +24,6 @@
         outline: none;
       }
 
-      .score {
-        color: yellow;
-        font-size: 32px;
-      }
-
       .godot {
         font-family: 'Noto Sans', 'Droid Sans', Arial, sans-serif;
         color: #e0e0e0;
@@ -139,12 +134,19 @@
     <link rel="apple-touch-icon" href="index.apple-touch-icon.png" />
   </head>
   <body>
-    <canvas id="canvas">
-      HTML5 canvas appears to be unsupported in the current browser.<br />
-      Please try updating or use a different browser.
-    </canvas>
+    <div>
+      <canvas style="margin: 0 auto" id="canvas">
+        HTML5 canvas appears to be unsupported in the current browser.<br />
+        Please try updating or use a different browser.
+      </canvas>
+    </div>
+    <br />
+    <br />
+    <br />
 
-    <a href="/public/scoreBoard.html" class="score">Score board</a>
+    <a style="color: yellow; font-size: 32px" href="/scoreBoard.html"
+      >Score board</a
+    >
     <div id="status">
       <div
         id="status-progress"
