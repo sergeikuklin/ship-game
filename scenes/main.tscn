@@ -1036,6 +1036,9 @@ position = Vector2(1561, 960)
 rotation = 3.14159
 node_color = 1
 
+[node name="RedDock" parent="Level1/Docks" instance=ExtResource("2_itocx")]
+position = Vector2(401, 200)
+
 [node name="Ships" type="Node2D" parent="Level1"]
 
 [node name="RedShip1" parent="Level1/Ships" instance=ExtResource("4_n738c")]
