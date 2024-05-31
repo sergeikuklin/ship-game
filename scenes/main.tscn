@@ -1095,33 +1095,6 @@ position = Vector2(646, 1226)
 rotation = -0.525344
 node_color = 2
 
-[node name="Ships#RedShip" parent="." instance=ExtResource("4_n738c")]
-position = Vector2(1609, 829)
-rotation = -6.6497
-
-[node name="Ships#BlueShip" parent="." instance=ExtResource("4_n738c")]
-position = Vector2(111, 933)
-rotation = 0.656244
-size = 0
-
-[node name="Ships#BlueShip2" parent="." instance=ExtResource("4_n738c")]
-position = Vector2(334, 1299)
-rotation = 0.0506145
-node_color = 1
-spawn_delay = 4.0
-
-[node name="Ships#GreenShip" parent="." instance=ExtResource("4_n738c")]
-position = Vector2(639, 985)
-rotation = 0.0506145
-node_color = 2
-
-[node name="Ships#Timer" type="Timer" parent="."]
-
-[node name="Docks" type="Node" parent="."]
-
-[node name="RedDock" parent="Docks" instance=ExtResource("2_itocx")]
-position = Vector2(401, 200)
-
 [node name="Level2" type="Node2D" parent="."]
 process_mode = 4
 visible = false
@@ -1170,7 +1143,6 @@ node_color = 1
 [node name="RedShip2" parent="Level2/Ships" instance=ExtResource("4_n738c")]
 position = Vector2(-85.9999, 153)
 rotation = -4.25511
-scale = Vector2(1, 1)
 spawn_delay = 4.0
 
 [node name="BlueShip2" parent="Level2/Ships" instance=ExtResource("4_n738c")]
@@ -1182,7 +1154,6 @@ spawn_delay = 4.0
 [node name="RedShip3" parent="Level2/Ships" instance=ExtResource("4_n738c")]
 position = Vector2(1664, 1187)
 rotation = -0.872665
-scale = Vector2(1, 1)
 spawn_delay = 10.0
 
 [node name="BlueShip3" parent="Level2/Ships" instance=ExtResource("4_n738c")]
