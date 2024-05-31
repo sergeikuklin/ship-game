@@ -90,7 +90,7 @@
                 })
                 .then(data => {
                     // Sort the scores in ascending order by the score value
-                    data.sort((a, b) => a.score - b.score);
+                    data.sort((a, b) => b.score - a.score);
     
                     const scoreList = document.getElementById('scoreList');
                     data.forEach(score => {
