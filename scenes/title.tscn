@@ -1,0 +1,40 @@
+[gd_scene load_steps=7 format=3 uid="uid://b1t35owb082s6"]
+
+[ext_resource type="Script" path="res://scripts/titlescreen.gd" id="1_tb2vx"]
+
+[sub_resource type="Theme" id="Theme_r8n06"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_e8drj"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m1qgk"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_espuo"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wwj4i"]
+
+[node name="title" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_r8n06")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 893.0
+offset_top = 767.0
+offset_right = 1021.0
+offset_bottom = 837.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0.76662, 0.76662, 0.76662, 1)
+theme_override_colors/font_hover_color = Color(0.589096, 0.589096, 0.589096, 1)
+theme_override_styles/normal = SubResource("StyleBoxTexture_e8drj")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_m1qgk")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_espuo")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_wwj4i")
+text = "START"
+script = ExtResource("1_tb2vx")
+
+[connection signal="pressed" from="Button" to="Button" method="_on_pressed"]
