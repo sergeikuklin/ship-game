@@ -17,13 +17,19 @@ app.use(
   helmet({
     contentSecurityPolicy: {
       directives: {
-        defaultSrc: ["*"],
-        scriptSrc: ["*", "'unsafe-inline'", "'unsafe-eval'"],
-        styleSrc: ["*", "'unsafe-inline'"],
-        imgSrc: ["*"],
-        childSrc: ["*"],
-        frameSrc: ["*"],
-        connectSrc: ["*"],
+        defaultSrc: ["'self'"],
+        scriptSrc: ["'self'", "'unsafe-inline'", "'wasm-unsafe-eval'"],
+        connectSrc: ["'self'", "https://ship-game-3.onrender.com"],
+        objectSrc: ["'none'"], // Optionally, you can tighten this
+        // Other directives as needed
+        // These are permissive CSP directives, not entirely sure if they work this way
+        // defaultSrc: ["*"],
+        // scriptSrc: ["*", "'unsafe-inline'", "'unsafe-eval'"],
+        // styleSrc: ["*", "'unsafe-inline'"],
+        // imgSrc: ["*"],
+        // childSrc: ["*"],
+        // frameSrc: ["*"],
+        // connectSrc: ["*"],
       },
     },
     crossOriginEmbedderPolicy: { policy: "require-corp" },
