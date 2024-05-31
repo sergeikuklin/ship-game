@@ -1,6 +1,32 @@
-[gd_scene load_steps=7 format=3 uid="uid://b1t35owb082s6"]
+[gd_scene load_steps=34 format=3 uid="uid://b1t35owb082s6"]
 
+[ext_resource type="FontFile" uid="uid://cgw0snu3omgu" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="1_3t1qr"]
 [ext_resource type="Script" path="res://scripts/titlescreen.gd" id="1_tb2vx"]
+[ext_resource type="Texture2D" uid="uid://btm535gwn22ew" path="res://assets/game logo/shiffle-logo-0.png" id="2_36fux"]
+[ext_resource type="Texture2D" uid="uid://c5301t3ss3sjb" path="res://assets/game logo/shiffle-logo-1.png" id="3_w2txe"]
+[ext_resource type="Texture2D" uid="uid://bhsl74swrdnct" path="res://assets/game logo/shiffle-logo-2.png" id="4_57cx1"]
+[ext_resource type="Texture2D" uid="uid://bgxk2g3oyylo" path="res://assets/game logo/shiffle-logo-3.png" id="5_u8q42"]
+[ext_resource type="Texture2D" uid="uid://bkcmhsh70rdmj" path="res://assets/game logo/shiffle-logo-4.png" id="6_f4kss"]
+[ext_resource type="Texture2D" uid="uid://ddb6na4nw21jw" path="res://assets/game logo/shiffle-logo-5.png" id="7_h7ehx"]
+[ext_resource type="Texture2D" uid="uid://be5kr33nc38ok" path="res://assets/game logo/shiffle-logo-6.png" id="8_vpdqt"]
+[ext_resource type="Texture2D" uid="uid://bjb6yn5tabxny" path="res://assets/game logo/shiffle-logo-7.png" id="9_82apu"]
+[ext_resource type="Texture2D" uid="uid://naid0vxqqabo" path="res://assets/game logo/shiffle-logo-8.png" id="10_1ntge"]
+[ext_resource type="Texture2D" uid="uid://bon6ckpsasy34" path="res://assets/game logo/shiffle-logo-9.png" id="11_iammx"]
+[ext_resource type="Texture2D" uid="uid://b7rtl60ohsoaq" path="res://assets/game logo/shiffle-logo-10.png" id="12_7xd6i"]
+[ext_resource type="Texture2D" uid="uid://baojo7k66rphx" path="res://assets/game logo/shiffle-logo-11.png" id="13_oufpw"]
+[ext_resource type="Texture2D" uid="uid://deh6jb3lygbu1" path="res://assets/game logo/shiffle-logo-12.png" id="14_6pk2a"]
+[ext_resource type="Texture2D" uid="uid://c0hh8jyexrt8o" path="res://assets/game logo/shiffle-logo-13.png" id="15_ryh0x"]
+[ext_resource type="Texture2D" uid="uid://ceux7qkejixny" path="res://assets/game logo/shiffle-logo-14.png" id="16_48xoa"]
+[ext_resource type="Texture2D" uid="uid://cbnfuvryrkfha" path="res://assets/game logo/shiffle-logo-15.png" id="17_036tu"]
+[ext_resource type="Texture2D" uid="uid://cmx5t7mmjsxef" path="res://assets/game logo/shiffle-logo-16.png" id="18_uu0v4"]
+[ext_resource type="Texture2D" uid="uid://bcforeh6w1ed5" path="res://assets/game logo/shiffle-logo-17.png" id="19_m63fv"]
+[ext_resource type="Texture2D" uid="uid://bc23pwfbqhs01" path="res://assets/game logo/shiffle-logo-18.png" id="20_v42ks"]
+[ext_resource type="Texture2D" uid="uid://d3tsnsxfawfp8" path="res://assets/game logo/shiffle-logo-19.png" id="21_fmqnm"]
+[ext_resource type="Texture2D" uid="uid://bng0f3w1kob4q" path="res://assets/game logo/shiffle-logo-20.png" id="22_fo0pj"]
+[ext_resource type="Texture2D" uid="uid://tml2mry0bqdo" path="res://assets/game logo/shiffle-logo-21.png" id="23_xoovv"]
+[ext_resource type="Texture2D" uid="uid://de8vybbrqrral" path="res://assets/game logo/shiffle-logo-22.png" id="24_2nkew"]
+[ext_resource type="Texture2D" uid="uid://ordu4qdjnpj" path="res://assets/game logo/shiffle-logo-23.png" id="25_ktqpp"]
+[ext_resource type="Texture2D" uid="uid://cq6lob1cdyjny" path="res://assets/game logo/shiffle-logo-24.png" id="26_lu33n"]
 
 [sub_resource type="Theme" id="Theme_r8n06"]
 
@@ -11,6 +37,89 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_espuo"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wwj4i"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6gp33"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_36fux")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_w2txe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_57cx1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_u8q42")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_f4kss")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_h7ehx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_vpdqt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_82apu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_1ntge")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_iammx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_7xd6i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_oufpw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_6pk2a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_ryh0x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_48xoa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_036tu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_uu0v4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_m63fv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_v42ks")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_fmqnm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_fo0pj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_xoovv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_2nkew")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_ktqpp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_lu33n")
+}],
+"loop": true,
+"name": &"LOGO",
+"speed": 30.0
+}]
 
 [node name="title" type="Control"]
 layout_mode = 3
@@ -23,18 +132,26 @@ theme = SubResource("Theme_r8n06")
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 0
-offset_left = 893.0
-offset_top = 767.0
-offset_right = 1021.0
-offset_bottom = 837.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
+offset_left = 878.0
+offset_top = 714.0
+offset_right = 1038.0
+offset_bottom = 784.0
+theme_override_colors/font_color = Color(1, 1, 0.462745, 1)
 theme_override_colors/font_pressed_color = Color(0.76662, 0.76662, 0.76662, 1)
 theme_override_colors/font_hover_color = Color(0.589096, 0.589096, 0.589096, 1)
+theme_override_fonts/font = ExtResource("1_3t1qr")
+theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxTexture_e8drj")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_m1qgk")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_espuo")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_wwj4i")
 text = "START"
 script = ExtResource("1_tb2vx")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(936, 474)
+sprite_frames = SubResource("SpriteFrames_6gp33")
+animation = &"LOGO"
+autoplay = "LOGO"
 
 [connection signal="pressed" from="Button" to="Button" method="_on_pressed"]

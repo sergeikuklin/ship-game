@@ -69,4 +69,4 @@ func _on_post_request_completed(_result, response_code, _headers, body):
 func handle_game_over():
 	print(user_name)
 	print('Game over')
-	post_score()
+	$"../GameOver".show()
