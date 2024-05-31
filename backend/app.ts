@@ -43,9 +43,9 @@ app.use(express.static(path.join(__dirname, "..", "public")));
 app.post("/score", (req: Request, res: Response) => {
   const { id, name, score } = req.body;
   if (
-    typeof id !== "number" ||
-    typeof name !== "string" ||
-    typeof score !== "number"
+    !id ||
+    !name ||
+    !score 
   ) {
     res.status(400).send("Invalid input");
     return;
