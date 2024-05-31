@@ -9,9 +9,10 @@ var tween
 var is_game_over = false
 
 func _input(event):
-	var mouse_position = event.position
 	
 	if event is InputEventMouseButton:
+		var mouse_position = event.position
+		
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			if event.pressed:
 				if not drawing_path:
@@ -33,11 +34,15 @@ func _input(event):
 					
 
 	elif event is InputEventMouseMotion and drawing_path:
+		var mouse_position = event.position
+		
 		if selected_ship:
 			path_points.append(mouse_position)
 
 func _ready():
 	%GameManager.get_scores()
+	
+	
 	
 func get_ship_at_position(mouse_position):
 	for ship in get_tree().get_nodes_in_group("ships"):

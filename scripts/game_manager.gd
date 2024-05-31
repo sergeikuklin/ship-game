@@ -1,7 +1,7 @@
 extends Node
 var score = 0
 @onready var score_label = $ScoreLabel
-
+var user_name = ''
 
 func add_points(point):
 	print('Add ' + str(point) + ' points')
@@ -39,4 +39,5 @@ func handle_scores(scores):
 		print("Score by %s: %d" % [score.name, score.score])
 
 func handle_game_over():
+	print(user_name)
 	print('Game over')
